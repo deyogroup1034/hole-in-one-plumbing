@@ -12,7 +12,7 @@ function WhyUs() {
         <div className="reveal why-media" style={{ position: "relative" }}>
           <Placeholder label="Photo · team & service van" style={{ height: 460, borderRadius: 20 }} />
           <div style={S.whyStat}>
-            <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 40, color: "var(--green)", lineHeight: 1 }}>{BIZ.years}</div>
+            <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 40, color: "var(--red)", lineHeight: 1 }}>{BIZ.years}</div>
             <div style={{ fontSize: 14, color: "var(--slate-600)", fontWeight: 600, marginTop: 4 }}>years serving<br/>North Texas</div>
           </div>
         </div>
@@ -76,7 +76,7 @@ function Testimonials() {
       <div style={S.revGlow} />
       <div className="wrap" style={{ position: "relative" }}>
         <div className="reveal" style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 44px" }}>
-          <span className="eyebrow" style={{ color: "#8fd0a3", justifyContent: "center" }}>In their words</span>
+          <span className="eyebrow" style={{ color: "#ff8a90", justifyContent: "center" }}>In their words</span>
           <h2 style={{ ...S.h2, color: "#fff" }}>What North Texas<br/>homeowners say</h2>
         </div>
         <div className="reveal" style={S.revCard}>
@@ -99,7 +99,7 @@ function Testimonials() {
         <div style={S.revDots}>
           {TESTIMONIALS.map((_, k) => (
             <button key={k} onClick={() => setI(k)} aria-label={"Review " + (k+1)}
-              style={{ ...S.revDot, width: k === i ? 26 : 8, background: k === i ? "var(--green)" : "rgba(255,255,255,.3)" }} />
+              style={{ ...S.revDot, width: k === i ? 26 : 8, background: k === i ? "var(--red)" : "rgba(255,255,255,.3)" }} />
           ))}
         </div>
       </div>
@@ -197,7 +197,7 @@ function Contact() {
               <Field label="What's going on? (optional)">
                 <textarea style={{ ...S.input, minHeight: 96, resize: "vertical" }} value={form.message} onChange={set("message")} placeholder="Describe the problem…" />
               </Field>
-              <button type="submit" className="btn btn-green btn-lg" style={{ width: "100%", marginTop: 6 }}>Request appointment <Icon name="arrow" /></button>
+              <button type="submit" className="btn btn-accent btn-lg" style={{ width: "100%", marginTop: 6 }}>Request appointment <Icon name="arrow" /></button>
               <p style={{ fontSize: 12.5, color: "var(--slate-400)", textAlign: "center", marginTop: 12 }}>This is a demo form — submissions aren't sent anywhere yet.</p>
             </form>
           )}

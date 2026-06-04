@@ -51,7 +51,7 @@ function Header({ showEmergency }) {
             <a href={"tel:" + BIZ.phones[0].replace(/\D/g, "")} className="btn btn-ghost" style={{ padding: "12px 18px", fontSize: 15 }}>
               <Icon name="phone" /> {BIZ.phones[0]}
             </a>
-            <a href="#contact" className="btn btn-green" style={{ padding: "12px 20px", fontSize: 15 }}>Schedule Service</a>
+            <a href="#contact" className="btn btn-accent" style={{ padding: "12px 20px", fontSize: 15 }}>Schedule Service</a>
           </div>
 
           <button className="mob-btn" style={S.burger} onClick={() => setOpen(o => !o)} aria-label="Menu">
@@ -69,7 +69,7 @@ function Header({ showEmergency }) {
             ))}
             <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 16 }}>
               <a href={"tel:" + BIZ.phones[0].replace(/\D/g, "")} className="btn btn-ghost"><Icon name="phone" /> {BIZ.phones[0]}</a>
-              <a href="#contact" onClick={() => setOpen(false)} className="btn btn-green">Schedule Service</a>
+              <a href="#contact" onClick={() => setOpen(false)} className="btn btn-accent">Schedule Service</a>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@ function Hero() {
             From hidden leaks and gas lines to stubborn drains, the team at {BIZ.name} brings {BIZ.years} years of straight-talking, fairly-priced service to homeowners across North Texas.
           </p>
           <div style={S.heroCtas}>
-            <a href={"tel:" + BIZ.phones[0].replace(/\D/g, "")} className="btn btn-green btn-lg"><Icon name="phone" /> Call {BIZ.phones[0]}</a>
+            <a href={"tel:" + BIZ.phones[0].replace(/\D/g, "")} className="btn btn-accent btn-lg"><Icon name="phone" /> Call {BIZ.phones[0]}</a>
             <a href="#contact" className="btn btn-lg" style={{ background: "#fff", color: "var(--blue-800)" }}>Schedule online <Icon name="arrow" /></a>
           </div>
           <div style={S.heroTrust}>

@@ -24,17 +24,17 @@ const S = {
   heroGlow: { position: "absolute", top: "-30%", right: "-10%", width: 700, height: 700, background: "radial-gradient(circle, rgba(4,129,57,.34), transparent 62%)", pointerEvents: "none" },
   heroGrid: { display: "grid", gridTemplateColumns: "1.05fr .95fr", gap: 56, alignItems: "center", padding: "78px 28px 88px", position: "relative" },
   heroH1: { fontSize: "clamp(40px, 5vw, 66px)", fontWeight: 900, color: "#fff", margin: "20px 0 22px", letterSpacing: "-0.03em" },
-  heroAccent: { color: "#5bd98a" },
+  heroAccent: { color: "#ff6b6b" },
   heroSub: { fontSize: 18.5, lineHeight: 1.62, color: "rgba(255,255,255,.84)", maxWidth: 520 },
   heroCtas: { display: "flex", gap: 14, flexWrap: "wrap", marginTop: 30 },
   heroTrust: { display: "flex", gap: 26, marginTop: 40, flexWrap: "wrap" },
   heroTrustItem: { display: "flex", alignItems: "center", gap: 11 },
-  heroTrustIc: { width: 42, height: 42, borderRadius: 12, background: "rgba(255,255,255,.1)", border: "1px solid rgba(255,255,255,.16)", display: "grid", placeItems: "center", color: "#5bd98a", flexShrink: 0 },
+  heroTrustIc: { width: 42, height: 42, borderRadius: 12, background: "rgba(255,255,255,.1)", border: "1px solid rgba(255,255,255,.16)", display: "grid", placeItems: "center", color: "#ff6b6b", flexShrink: 0 },
   heroTrustT: { fontFamily: "var(--font-display)", fontWeight: 800, color: "#fff", fontSize: 16, lineHeight: 1.15, whiteSpace: "nowrap" },
   heroTrustS: { fontSize: 13, color: "rgba(255,255,255,.66)", whiteSpace: "nowrap" },
   heroMedia: { position: "relative" },
   heroBadge: { position: "absolute", left: -18, bottom: 34, background: "#fff", borderRadius: 16, padding: "14px 18px", display: "flex", alignItems: "center", gap: 12, boxShadow: "var(--shadow-lg)" },
-  heroBadgeIc: { width: 38, height: 38, borderRadius: 10, background: "var(--green-tint)", color: "var(--green)", display: "grid", placeItems: "center", flexShrink: 0 },
+  heroBadgeIc: { width: 38, height: 38, borderRadius: 10, background: "var(--red-tint)", color: "var(--red)", display: "grid", placeItems: "center", flexShrink: 0 },
   heroLicense: { position: "absolute", top: 18, right: 18, background: "rgba(0,42,82,.72)", color: "#fff", fontSize: 12.5, fontWeight: 700, fontFamily: "var(--font-display)", padding: "8px 14px", borderRadius: 999, backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,.18)" },
 
   /* stats */
@@ -56,14 +56,14 @@ const S = {
   svcIc: { width: 56, height: 56, borderRadius: 15, background: "var(--blue-tint)", color: "var(--blue-700)", display: "grid", placeItems: "center", marginBottom: 20 },
   svcTitle: { fontSize: 21, fontWeight: 700, marginBottom: 10 },
   svcBlurb: { fontSize: 15.5, color: "var(--slate-500)", lineHeight: 1.6 },
-  svcLink: { display: "inline-flex", alignItems: "center", gap: 7, marginTop: 18, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14.5, color: "var(--green-600)" },
+  svcLink: { display: "inline-flex", alignItems: "center", gap: 7, marginTop: 18, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14.5, color: "var(--red-600)" },
 
   /* why */
   whyGrid: { display: "grid", gridTemplateColumns: ".95fr 1.05fr", gap: 60, alignItems: "center" },
   whyStat: { position: "absolute", right: -16, bottom: -16, background: "#fff", borderRadius: 18, padding: "20px 24px", boxShadow: "var(--shadow-lg)", textAlign: "center" },
   whyList: { display: "grid", gap: 22, marginTop: 30 },
   whyItem: { display: "flex", gap: 16 },
-  whyItemIc: { width: 46, height: 46, borderRadius: 12, background: "var(--green-tint)", color: "var(--green-600)", display: "grid", placeItems: "center", flexShrink: 0 },
+  whyItemIc: { width: 46, height: 46, borderRadius: 12, background: "var(--red-tint)", color: "var(--red-600)", display: "grid", placeItems: "center", flexShrink: 0 },
   whyItemT: { fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18, color: "var(--ink)", marginBottom: 3 },
   whyItemS: { fontSize: 15, color: "var(--slate-500)", lineHeight: 1.55 },
 
@@ -97,14 +97,14 @@ const S = {
   input: { width: "100%", padding: "13px 15px", fontSize: 15.5, fontFamily: "var(--font-body)", color: "var(--ink)", background: "var(--paper)", border: "1.5px solid var(--line-strong)", borderRadius: 11, outline: "none", transition: "border-color .18s, box-shadow .18s" },
   fieldErr: { display: "block", fontSize: 13, color: "#d23b3b", marginTop: 6, fontWeight: 600 },
   sentBox: { textAlign: "center", padding: "30px 10px" },
-  sentIc: { width: 64, height: 64, borderRadius: 999, background: "var(--green-tint)", color: "var(--green)", display: "grid", placeItems: "center", margin: "0 auto 22px" },
+  sentIc: { width: 64, height: 64, borderRadius: 999, background: "var(--red-tint)", color: "var(--red)", display: "grid", placeItems: "center", margin: "0 auto 22px" },
 
   /* footer */
   footer: { background: "var(--blue-900)", color: "rgba(255,255,255,.7)" },
   footerGrid: { display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 1.2fr", gap: 40, padding: "64px 28px 48px" },
   footLogoWrap: { background: "#fff", display: "inline-flex", padding: "12px 16px", borderRadius: 14, marginBottom: 18 },
   footText: { fontSize: 15, lineHeight: 1.6, maxWidth: 320, color: "rgba(255,255,255,.66)" },
-  footLic: { display: "inline-flex", alignItems: "center", gap: 8, marginTop: 18, fontSize: 13.5, fontWeight: 700, color: "#8fd0a3", fontFamily: "var(--font-display)" },
+  footLic: { display: "inline-flex", alignItems: "center", gap: 8, marginTop: 18, fontSize: 13.5, fontWeight: 700, color: "#ff8a90", fontFamily: "var(--font-display)" },
   footHead: { fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#fff", marginBottom: 16, textTransform: "uppercase", letterSpacing: ".06em" },
   footLink: { display: "block", fontSize: 15, color: "rgba(255,255,255,.66)", padding: "6px 0", transition: "color .18s" },
   footBottom: { borderTop: "1px solid rgba(255,255,255,.1)" },
@@ -113,7 +113,7 @@ const S = {
 
 /* ===================== RESPONSIVE + INTERACTION CSS ===================== */
 const css = `
-.nav-link::after { content:""; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--green); transition:width .22s; }
+.nav-link::after { content:""; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--red); transition:width .22s; }
 .nav-link:hover { color: var(--blue-700); }
 .nav-link:hover::after { width:100%; }
 .ut-ic { width:15px; height:15px; }
@@ -122,7 +122,7 @@ const css = `
 .svc-card:hover .svc-link svg { transform: translateX(4px); }
 .contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .area-chip { transition: transform .18s, background .18s; }
-.area-chip:hover { transform: translateY(-2px); background: var(--green-tint); }
+.area-chip:hover { transform: translateY(-2px); background: var(--red-tint); }
 .area-chip svg { width:14px; height:14px; }
 .rev-arrow:hover { background: var(--blue-700); color:#fff; border-color: var(--blue-700); }
 .rev-arrow .flip { transform: scaleX(-1); }

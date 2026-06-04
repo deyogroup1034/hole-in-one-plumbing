@@ -2,7 +2,7 @@
 
 A rebuilt marketing homepage for **Hole in One Plumbing, LLC** — a family-run plumbing company serving the Dallas–Ft. Worth Metroplex.
 
-Clean, trustworthy, mobile-responsive single-page site with a working "request appointment" form, scroll reveal animations, and the brand's blue + golf-green palette pulled from the logo.
+Clean, trustworthy, mobile-responsive single-page site with a working "request appointment" form, scroll reveal animations, and a red/white/blue palette.
 
 ## Tech
 
