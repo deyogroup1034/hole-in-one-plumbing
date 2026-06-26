@@ -1,28 +1,38 @@
-/* Reveal-on-scroll: adds `.in` to `.reveal` elements as they enter the
-   viewport. Respects prefers-reduced-motion (CSS handles the no-motion
-   case by forcing everything visible). */
+/* Reveal-on-scroll — progressive enhancement.
+   Content is visible by default; the hidden/animated state in global.css
+   only applies once we add `.js-reveal` to <html>. So if this script never
+   runs (JS off/blocked), nothing is hidden. While it runs, elements reveal
+   as they scroll into view, with a hard safety net so content can NEVER
+   stay permanently hidden. */
 function initReveal() {
+  const root = document.documentElement;
+  root.classList.add('js-reveal');
+
   const els = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
   if (els.length === 0) return;
 
-  if (!('IntersectionObserver' in window)) {
-    els.forEach((el) => el.classList.add('in'));
-    return;
-  }
+  const revealAll = () => els.forEach((el) => el.classList.add('in'));
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      }
-    },
-    { rootMargin: '0px 0px -10% 0px', threshold: 0.05 },
-  );
+  const inView = (el: Element) => {
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    return r.top < vh * 0.92 && r.bottom > 0;
+  };
+  const check = () => {
+    for (const el of els) {
+      if (!el.classList.contains('in') && inView(el)) el.classList.add('in');
+    }
+  };
 
-  els.forEach((el) => io.observe(el));
+  // Reveal anything already on screen now (no flash for above-the-fold).
+  check();
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', check, { passive: true });
+  window.addEventListener('load', check);
+
+  // Safety net: if anything ever blocks the scroll checks, make sure no
+  // content stays hidden.
+  setTimeout(revealAll, 2500);
 }
 
 initReveal();
