@@ -1,7 +1,6 @@
 ---
 import Icon from '../Icon.astro';
-import Image from '../Image.astro';
-import { AREAS, PHOTOS } from '@/data/site';
+import { AREAS } from '@/data/site';
 ---
 
 <section id="area" class="py-20 lg:py-24">
@@ -31,15 +30,15 @@ import { AREAS, PHOTOS } from '@/data/site';
       </p>
     </div>
 
-    <div class="reveal relative">
-      <Image
-        src={PHOTOS.area.src}
-        placeholder={PHOTOS.area.placeholder}
-        alt={PHOTOS.area.alt}
-        width={560}
-        height={400}
-        class="h-[400px] w-full rounded-[20px] object-cover shadow-lift"
-      />
+    <div class="reveal relative overflow-hidden rounded-[20px] shadow-lift">
+      <!-- Live North Texas map (keyless Google Maps embed — no API key needed) -->
+      <iframe
+        title="Map of the Hole in One Plumbing service area across the Dallas–Fort Worth metroplex"
+        src="https://maps.google.com/maps?q=Dallas-Fort%20Worth%20metroplex&t=&z=9&ie=UTF8&iwloc=&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="h-[400px] w-full border-0"
+      ></iframe>
     </div>
   </div>
 </section>
