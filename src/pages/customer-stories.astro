@@ -4,9 +4,9 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import PageHero from '@/components/PageHero.astro';
 import CtaBand from '@/components/CtaBand.astro';
-import Image from '@/components/Image.astro';
 import Icon from '@/components/Icon.astro';
-import { BIZ, TESTIMONIALS, TRUST_BADGES, JOBSITE_PHOTO } from '@/data/site';
+import { FeaturedStories } from '@/components/FeaturedStories';
+import { BIZ, TESTIMONIALS, TRUST_BADGES } from '@/data/site';
 
 const title = 'Customer Stories & Reviews | Hole in One Plumbing';
 const description =
@@ -38,42 +38,22 @@ const STARS = 5;
       </div>
     </section>
 
-    <!-- Featured story (case-study card with red left-border + job-site photo) -->
+    <!-- Featured Stories — interactive: one main story + the rest selectable -->
     <section class="py-20 lg:py-24">
       <div class="wrap">
         <div class="reveal mb-10 max-w-2xl">
           <span class="eyebrow">Featured Stories</span>
-          <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">A job, start to finish</h2>
+          <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">Recent jobs, start to finish</h2>
+          <p class="mt-4 text-[17px] leading-relaxed text-slate-soft">
+            A look at the work we’re proud of. Pick a job to read the story.
+          </p>
         </div>
 
-        <!-- PLACEHOLDER featured story — built around the real job-site photo.
-             PRE-LAUNCH: replace with a real, verifiable job story + consent. -->
-        <article class="reveal grid items-stretch gap-0 overflow-hidden rounded-[20px] border border-line border-l-[6px] border-l-accent-500 bg-white shadow-card lg:grid-cols-2">
-          <div class="order-2 p-8 lg:order-1 lg:p-10">
-            <h3 class="text-[24px] font-bold leading-snug">
-              A slab leak found and fixed without tearing up the house — Wylie, TX.
-            </h3>
-            <p class="mt-4 text-[16.5px] leading-relaxed text-slate-strong">
-              “Before our foundation company could start, the under-slab plumbing had to pass a
-              hydrostatic test. Hole in One isolated a failed line, repaired it, and documented
-              everything start to finish — so the foundation work stayed on schedule.”
-            </p>
-            <a href="/services#hydro-pre" class="mt-6 inline-flex items-center gap-1.5 font-display text-[14.5px] font-bold text-accent-600">
-              See how foundation testing works <Icon name="arrow" size={16} />
-            </a>
-          </div>
-          <div class="order-1 min-h-[280px] lg:order-2">
-            <!-- Reuse the real job-site hero photo (placeholder box until file lands) -->
-            <Image
-              src={JOBSITE_PHOTO.src}
-              placeholder={JOBSITE_PHOTO.placeholder}
-              alt={JOBSITE_PHOTO.alt}
-              width={560}
-              height={420}
-              class="h-full min-h-[280px] w-full object-cover"
-            />
-          </div>
-        </article>
+        <!-- PLACEHOLDER featured stories — see FEATURED_STORIES in site.ts.
+             PRE-LAUNCH: replace with real, verifiable jobs + consent. -->
+        <div class="reveal">
+          <FeaturedStories client:visible />
+        </div>
       </div>
     </section>
 

@@ -215,5 +215,61 @@ export const PHOTOS: Record<'why' | 'area', PhotoSlot> = {
   },
 };
 
+/* ⚠️ PLACEHOLDER featured stories — invented case studies for layout/UX.
+   DO NOT LAUNCH AS-IS. PRE-LAUNCH: replace with real, verifiable jobs +
+   consent. Shown in the interactive Featured Stories picker (one main view
+   + the rest selectable). The first story reuses the real job-site photo. */
+export interface FeaturedStory {
+  title: string;
+  location: string;
+  service: string;
+  body: string;
+  serviceHref: string;
+  photo: PhotoSlot;
+}
+
+export const FEATURED_STORIES: FeaturedStory[] = [
+  {
+    title: 'A slab leak found and fixed without tearing up the house',
+    location: 'Wylie, TX',
+    service: 'Hydrostatic Pre-Test',
+    body: "A foundation crew couldn't start until the under-slab plumbing was cleared. We ran a hydrostatic test, isolated the failed line, and repaired it — documented start to finish, so the foundation work stayed on schedule.",
+    serviceHref: '/services#hydro-pre',
+    photo: JOBSITE_PHOTO,
+  },
+  {
+    title: 'Every line re-tested and documented after the lift',
+    location: 'Plano, TX',
+    service: 'Hydrostatic Post-Test',
+    body: 'After the slab was lifted, we post-tested each under-slab line and handed over written results — proof the plumbing came through the foundation repair sound.',
+    serviceHref: '/services#hydro-post',
+    photo: { placeholder: 'Photo · post-test, Plano', alt: 'Documented hydrostatic post-test job' },
+  },
+  {
+    title: 'Cast-iron drains converted to PVC — by tunneling, not demolition',
+    location: 'Sachse, TX',
+    service: 'Under-Slab Repair',
+    body: 'Aging cast-iron lines were failing beneath an older home. We tunneled under the slab and converted them to PVC, leaving the finished floors untouched.',
+    serviceHref: '/services#foundation-repair',
+    photo: { placeholder: 'Photo · under-slab repair, Sachse', alt: 'Under-slab cast-iron to PVC conversion job' },
+  },
+  {
+    title: 'A second opinion that saved thousands',
+    location: 'Rockwall, TX',
+    service: 'Pipe & Sewer Isolation',
+    body: 'Another company called for a major repair. We isolated the system, pinpointed the real failure in under an hour, and fixed only what actually needed fixing.',
+    serviceHref: '/services#isolation',
+    photo: { placeholder: 'Photo · isolation test, Rockwall', alt: 'Pipe and sewer isolation diagnosis job' },
+  },
+  {
+    title: 'A tankless system, sized and installed right',
+    location: 'Murphy, TX',
+    service: 'Water Heaters',
+    body: 'We swapped an aging tank for a tankless unit sized for the home — installed to code with up-front pricing on both the unit and the labor.',
+    serviceHref: '/services#water-heater',
+    photo: { placeholder: 'Photo · tankless install, Murphy', alt: 'Tankless water heater installation job' },
+  },
+];
+
 // tel: links need digits only.
 export const telHref = (phone: string) => `tel:${phone.replace(/\D/g, '')}`;
