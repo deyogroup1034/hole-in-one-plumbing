@@ -1,0 +1,57 @@
+---
+/**
+ * <Image> — the single wrapper every photo on the site goes through.
+ *
+ * Two modes, so photos stay swappable from one place:
+ *  - Real photo:   pass `src` (+ required `alt`) → renders an <img>.
+ *  - Placeholder:  omit `src`, pass `placeholder` → renders the approved
+ *                  prototype placeholder box (striped panel + label).
+ *
+ * We're on placeholders now and swapping in real client photos later.
+ * When real, locally-hosted photos arrive this is the one place to
+ * switch to astro:assets optimization. `alt` is REQUIRED by the type —
+ * no photo ships without alt text.
+ */
+interface Props {
+  src?: string;
+  alt: string;
+  /** Label shown in the styled placeholder box (when no `src`). */
+  placeholder?: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  /** Eager-load above-the-fold images (e.g. the hero). Default lazy. */
+  loading?: 'lazy' | 'eager';
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  placeholder,
+  width,
+  height,
+  class: className,
+  loading = 'lazy',
+  sizes,
+} = Astro.props;
+---
+
+{
+  src ? (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding="async"
+      sizes={sizes}
+      class={className}
+    />
+  ) : (
+    <div class:list={['ph', className]} role="img" aria-label={alt}>
+      <span>{placeholder ?? alt}</span>
+    </div>
+  )
+}

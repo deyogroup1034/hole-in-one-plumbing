@@ -1,0 +1,77 @@
+---
+import '@/styles/global.css';
+import { BIZ, telHref } from '@/data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Page-specific JSON-LD (e.g. Service schema). Rendered after the global LocalBusiness schema. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = `${BIZ.name} — DFW Foundation Plumbing Specialists`,
+  description = `${BIZ.name}: foundation plumbing specialists serving the Dallas–Fort Worth Metroplex. Hydrostatic pre- and post-testing, pipe isolation, under-slab repair, drain & sewer, water heaters, and emergency service.`,
+  jsonLd,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+
+// Global LocalBusiness (Plumber) schema — present on every page.
+// TODO(client): add real postal address, geo, opening hours, and sameAs
+// (Google Business Profile / Facebook) once confirmed.
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Plumber',
+  name: BIZ.name,
+  description,
+  telephone: telHref(BIZ.phones[0]).replace('tel:', '+1'),
+  email: BIZ.email,
+  areaServed: 'Dallas–Fort Worth Metroplex',
+  url: canonical,
+};
+
+const pageSchemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const schemas = [localBusinessSchema, ...pageSchemas];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+
+    <!-- Fonts (match the approved prototype) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    {
+      schemas.map((schema) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      import '@/scripts/reveal.ts';
+    </script>
+  </body>
+</html>

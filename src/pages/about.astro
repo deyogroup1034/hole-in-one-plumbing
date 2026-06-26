@@ -1,0 +1,140 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import PageHero from '@/components/PageHero.astro';
+import CtaBand from '@/components/CtaBand.astro';
+import Icon from '@/components/Icon.astro';
+import { BIZ, AREAS } from '@/data/site';
+import type { IconName } from '@/data/site';
+
+const title = 'About Hole in One Plumbing | Family-Run DFW Plumbers';
+const description =
+  'Family-owned plumbing company serving Dallas–Fort Worth, specializing in foundation plumbing, slab leaks, and honest, up-front pricing.';
+
+const differentiators: { icon: IconName; t: string; s: string }[] = [
+  {
+    icon: 'wallet',
+    t: 'Up-front pricing.',
+    s: 'You get a clear price before we start. No surprises, no pressure, no “mystery” charges at the end.',
+  },
+  {
+    icon: 'foundation',
+    t: 'Foundation specialists.',
+    s: 'Hydrostatic testing, isolation, and under-slab repair are our core work — not an afterthought.',
+  },
+  {
+    icon: 'shield',
+    // TODO(client): confirm TX Master Plumber License #M37741.
+    t: 'Licensed & insured.',
+    s: `TX Master Plumber License ${BIZ.license.replace('Master Plumber ', '')}. Fully insured for your protection.`,
+  },
+  {
+    icon: 'pin',
+    t: 'Family-run & local.',
+    s: 'You deal with people who live and work right here in North Texas, not a call center.',
+  },
+];
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="About Hole in One Plumbing"
+      title="Family-run plumbers who treat your home like our own"
+      subhead={`For ${BIZ.years} years, North Texas homeowners have trusted us for the foundation and plumbing work other companies pass on.`}
+    />
+    {/* TODO(client): confirm # years in business (subhead above uses the draft value). */}
+
+    <!-- Our story -->
+    <section class="py-20 lg:py-24">
+      <div class="wrap max-w-3xl">
+        <span class="eyebrow">Our story</span>
+        <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">Built on telling the truth</h2>
+        <div class="mt-6 space-y-5 text-[18px] leading-relaxed text-slate-strong">
+          <p>
+            Hole in One Plumbing is a family-owned company serving the Dallas–Fort Worth metroplex.
+            We built this business on a simple idea: tell people the truth, charge a fair price, and
+            do the job right the first time.
+          </p>
+          <p>
+            While a lot of plumbers shy away from foundation-related work — the slab leaks, the
+            hydrostatic testing, the under-slab repairs — that’s exactly where we’ve made our name.
+            When a foundation company or a homeowner needs to know whether the plumbing under a slab
+            is sound, they call us.
+          </p>
+        </div>
+        <!-- TODO(client): home base — prototype said Wylie, TX; confirm before publishing. -->
+      </div>
+    </section>
+
+    <!-- What makes us different -->
+    <section class="bg-paper py-20 lg:py-24">
+      <div class="wrap">
+        <div class="reveal mb-12 max-w-2xl">
+          <span class="eyebrow">Why homeowners call us</span>
+          <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">What makes us different</h2>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {
+            differentiators.map((d) => (
+              <article class="reveal flex gap-4 rounded-[18px] border border-line bg-white p-7">
+                <div class="grid h-12 w-12 flex-shrink-0 place-items-center rounded-[13px] bg-accent-tint text-accent-600">
+                  <Icon name={d.icon} size={24} />
+                </div>
+                <div>
+                  <div class="font-display text-[18px] font-bold text-ink">{d.t}</div>
+                  <p class="mt-1 text-[15.5px] leading-relaxed text-slate-soft">{d.s}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Service area (reuses homepage area-chip styling) -->
+    <section class="py-20 lg:py-24">
+      <div class="wrap max-w-3xl">
+        <span class="eyebrow">Where we work</span>
+        <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">Serving the DFW Metroplex</h2>
+        <p class="mt-4 text-[18px] leading-relaxed text-slate-soft">
+          We cover communities across the Dallas–Fort Worth metroplex. Don’t see your town? Give us a
+          call — chances are we’re already working nearby.
+        </p>
+        <!-- TODO(client): confirm the real list of cities served. -->
+        <div class="mt-7 flex flex-wrap gap-2.5">
+          {
+            AREAS.map((a) => (
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-[#dbe6f1] bg-navy-tint px-4 py-2 font-display text-[14.5px] font-semibold text-navy-800">
+                <Icon name="pin" size={14} /> {a}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Credentials strip -->
+    <section class="border-y border-line bg-paper">
+      <div class="wrap flex flex-wrap items-center justify-center gap-x-6 gap-y-3 py-7 text-center font-display text-[14.5px] font-semibold text-slate-strong">
+        <span class="inline-flex items-center gap-2"><Icon name="shield" size={18} class="text-accent-600" /> Licensed</span>
+        <span class="text-line-strong">·</span>
+        <span class="inline-flex items-center gap-2"><Icon name="check" size={18} class="text-accent-600" /> Insured</span>
+        <span class="text-line-strong">·</span>
+        <!-- TODO(client): years in business -->
+        <span class="text-slate-faint">{BIZ.years} years in business (TODO confirm)</span>
+        <span class="text-line-strong">·</span>
+        <!-- TODO(client): BBB / Google rating if applicable -->
+        <span class="text-slate-faint">BBB / Google rating — TODO(client)</span>
+        <span class="text-line-strong">·</span>
+        <!-- TODO(client): "Proud sponsor of the Wylie Pirates" — confirm before including. -->
+        <span class="text-slate-faint">Proud sponsor of the Wylie Pirates — TODO(client) confirm</span>
+      </div>
+    </section>
+
+    <CtaBand />
+  </main>
+  <Footer />
+</Layout>

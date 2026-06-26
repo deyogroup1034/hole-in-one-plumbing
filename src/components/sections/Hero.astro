@@ -1,0 +1,89 @@
+---
+import Icon from '../Icon.astro';
+import Image from '../Image.astro';
+import { BIZ, JOBSITE_PHOTO, telHref } from '@/data/site';
+
+const trust = [
+  { ic: 'award' as const, t: `${BIZ.years} years`, s: 'in business' },
+  { ic: 'shield' as const, t: 'Licensed', s: '& insured' },
+  { ic: 'star' as const, t: '5-star', s: 'rated locally' },
+];
+---
+
+<section id="top" class="relative overflow-hidden bg-gradient-to-b from-navy-800 to-navy-900 text-white">
+  <!-- soft glow (matches prototype) -->
+  <div
+    class="pointer-events-none absolute -right-[10%] -top-[30%] h-[700px] w-[700px] rounded-full"
+    style="background: radial-gradient(circle, rgba(4,129,57,.30), transparent 62%);"
+  >
+  </div>
+
+  <div class="wrap relative grid items-center gap-10 py-16 lg:grid-cols-[1.05fr_.95fr] lg:gap-[56px] lg:pb-[88px] lg:pt-[78px]">
+    <div>
+      <span class="eyebrow" style="color:#9fd3ff;">Family-run · Dallas–Ft. Worth</span>
+      <h1 class="mb-[22px] mt-5 text-[clamp(40px,5vw,66px)] font-black tracking-[-0.03em] text-white">
+        Honest plumbing,<br />done right the<br /><span class="text-accent-400">first time.</span>
+      </h1>
+      <p class="max-w-[520px] text-[18.5px] leading-[1.62] text-white/85">
+        From hidden slab leaks and hydrostatic testing to stubborn drains, the team at {BIZ.name} brings
+        {BIZ.years} years of straight-talking, fairly-priced service to homeowners across North Texas.
+      </p>
+
+      <div class="mt-[30px] flex flex-wrap gap-3.5">
+        <a href={telHref(BIZ.phones[0])} class="btn btn-accent btn-lg">
+          <Icon name="phone" size={18} /> Call {BIZ.phones[0]}
+        </a>
+        <a href="#contact" class="btn btn-light btn-lg">
+          Schedule online <Icon name="arrow" size={18} />
+        </a>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-x-[26px] gap-y-4">
+        {
+          trust.map((b) => (
+            <div class="flex items-center gap-2.5">
+              <div class="grid h-[42px] w-[42px] flex-shrink-0 place-items-center rounded-[12px] border border-white/15 bg-white/10 text-accent-400">
+                <Icon name={b.ic} size={22} />
+              </div>
+              <div>
+                <div class="font-display text-base font-extrabold leading-tight text-white">{b.t}</div>
+                <div class="text-[13px] text-white/65">{b.s}</div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Hero media -->
+    <div class="relative">
+      <Image
+        src={JOBSITE_PHOTO.src}
+        placeholder={JOBSITE_PHOTO.placeholder}
+        alt={JOBSITE_PHOTO.alt}
+        loading="eager"
+        width={560}
+        height={460}
+        class="h-[460px] w-full rounded-[20px] object-cover shadow-lift"
+      />
+      <!-- floating badge -->
+      <div
+        class="absolute -left-4 bottom-8 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-lift"
+      >
+        <div class="grid h-9 w-9 flex-shrink-0 place-items-center rounded-[10px] bg-accent-tint text-accent-600">
+          <Icon name="check" size={20} />
+        </div>
+        <div>
+          <div class="font-display text-base font-extrabold text-ink">Up-front pricing</div>
+          <div class="text-[13.5px] text-slate-soft">No surprises on the bill</div>
+        </div>
+      </div>
+      <!-- license chip -->
+      <div
+        class="absolute right-4 top-4 rounded-full border border-white/20 bg-navy-950/70 px-3.5 py-2 font-display text-[12.5px] font-bold text-white backdrop-blur"
+      >
+        {BIZ.license}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+import Icon from '../Icon.astro';
+import Image from '../Image.astro';
+import { AREAS, PHOTOS } from '@/data/site';
+---
+
+<section id="area" class="py-20 lg:py-24">
+  <div class="wrap grid items-center gap-14 lg:grid-cols-2">
+    <div class="reveal">
+      <span class="eyebrow">Where we work</span>
+      <h2 class="mt-4 text-[clamp(30px,3.6vw,46px)] font-extrabold">
+        Proudly serving the<br />DFW Metroplex
+      </h2>
+      <p class="mt-4 text-[18px] leading-relaxed text-slate-soft">
+        We cover communities across North Texas. Don't see your town? Give us a call — chances are
+        we're already working nearby.
+      </p>
+
+      <div class="mt-7 flex flex-wrap gap-2.5">
+        {
+          /* TODO(client): confirm exact list of cities served */
+          AREAS.map((a) => (
+            <span class="area-chip inline-flex items-center gap-1.5 rounded-full border border-[#dbe6f1] bg-navy-tint px-4 py-2 font-display text-[14.5px] font-semibold text-navy-800">
+              <Icon name="pin" size={14} /> {a}
+            </span>
+          ))
+        }
+      </div>
+
+      <p class="mt-6 flex items-center gap-2 text-[14.5px] text-slate-soft">
+        <Icon name="truck" size={18} /> Fast, reliable trucks across the whole metroplex.
+      </p>
+    </div>
+
+    <div class="reveal relative">
+      <Image
+        src={PHOTOS.area.src}
+        placeholder={PHOTOS.area.placeholder}
+        alt={PHOTOS.area.alt}
+        width={560}
+        height={400}
+        class="h-[400px] w-full rounded-[20px] object-cover shadow-lift"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .area-chip {
+    transition:
+      transform 0.18s,
+      background 0.18s;
+  }
+  .area-chip:hover {
+    transform: translateY(-2px);
+    background: var(--color-accent-tint);
+  }
+</style>

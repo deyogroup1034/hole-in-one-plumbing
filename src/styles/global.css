@@ -1,0 +1,250 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   THEME TOKENS  —  locked design system for Hole in One Plumbing
+   Ported 1:1 from the approved prototype: deep NAVY backgrounds,
+   RED accents, GOLD review stars. Exposed as Tailwind utilities,
+   e.g. bg-navy-900, text-accent-500, border-line, font-display.
+   ============================================================ */
+@theme {
+  /* ---- Navy (primary brand / dark backgrounds) ---- */
+  --color-navy-950: #002038;
+  --color-navy-900: #002a52;
+  --color-navy-800: #003d74;
+  --color-navy-700: #0a4c89;
+  --color-navy-600: #1565a8;
+  --color-navy-500: #2f7bc4;
+  --color-navy-400: #4a82bb;
+  --color-navy-tint: #eaf1f8;
+
+  /* ---- Charcoal (neutral dark, available for dark sections) ---- */
+  --color-charcoal-950: #0b0e13;
+  --color-charcoal-900: #11151c;
+  --color-charcoal-800: #1a212b;
+  --color-charcoal-700: #273140;
+
+  /* ---- Accent = RED (CTAs / highlights, per prototype) ---- */
+  --color-accent-300: #ff8a90; /* light coral — on-dark eyebrows */
+  --color-accent-400: #ff6b6b; /* coral — on-dark heading accent */
+  --color-accent-500: #c8102e; /* main red */
+  --color-accent-600: #b00d28;
+  --color-accent-700: #97091f;
+  --color-accent-tint: #fbeaec;
+
+  /* ---- Gold (review stars, per prototype) ---- */
+  --color-gold-500: #f5b933;
+
+  /* ---- Ink & slate (text on light surfaces) ---- */
+  --color-ink: #0f1722;
+  --color-slate-deep: #1f2c3a;
+  --color-slate-strong: #38485a;
+  --color-slate-mid: #4f6072;
+  --color-slate-soft: #647386;
+  --color-slate-faint: #8d9aab;
+
+  /* ---- Lines & surfaces ---- */
+  --color-line: #e4eaf0;
+  --color-line-strong: #d4dde6;
+  --color-paper: #f5f8fb;
+
+  /* ---- Fonts ---- */
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+
+  /* ---- Radii ---- */
+  --radius-pill: 999px;
+
+  /* ---- Shadows ---- */
+  --shadow-card: 0 4px 16px rgba(15, 23, 34, 0.08), 0 2px 6px rgba(15, 23, 34, 0.05);
+  --shadow-lift: 0 18px 48px rgba(15, 23, 34, 0.14), 0 6px 16px rgba(15, 23, 34, 0.08);
+  --shadow-accent: 0 14px 34px rgba(200, 16, 46, 0.26);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px; /* offset for the sticky header */
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-slate-strong);
+    background: #fff;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    margin: 0;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ============================================================
+   COMPONENT UTILITIES
+   ============================================================ */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.9375rem 1.625rem;
+    border-radius: var(--radius-pill);
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      background 0.18s ease,
+      color 0.18s ease;
+  }
+  .btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  .btn-lg {
+    font-size: 1.0625rem;
+    padding: 1.0625rem 1.875rem;
+  }
+
+  /* Red = primary call-to-action */
+  .btn-accent {
+    background: var(--color-accent-500);
+    color: #fff;
+    box-shadow: var(--shadow-accent);
+  }
+  .btn-accent:hover {
+    background: var(--color-accent-700);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(200, 16, 46, 0.32);
+  }
+
+  /* Navy = secondary solid */
+  .btn-navy {
+    background: var(--color-navy-700);
+    color: #fff;
+    box-shadow: 0 14px 34px rgba(10, 76, 137, 0.28);
+  }
+  .btn-navy:hover {
+    background: var(--color-navy-800);
+    transform: translateY(-2px);
+  }
+
+  /* Ghost = outline on light */
+  .btn-ghost {
+    background: #fff;
+    color: var(--color-navy-700);
+    box-shadow: inset 0 0 0 1.5px var(--color-line-strong);
+  }
+  .btn-ghost:hover {
+    box-shadow: inset 0 0 0 1.5px var(--color-navy-700);
+    transform: translateY(-2px);
+  }
+
+  /* Light button (for dark backgrounds) */
+  .btn-light {
+    background: #fff;
+    color: var(--color-navy-800);
+  }
+  .btn-light:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent-600);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5625rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 22px;
+    height: 2px;
+    background: var(--color-accent-500);
+    border-radius: 2px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+  }
+
+  /* Styled image placeholder (stock now, real photos later) — ported
+     from the prototype's `.ph` treatment. */
+  .ph {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-navy-600);
+    background:
+      repeating-linear-gradient(
+        135deg,
+        rgba(10, 76, 137, 0.05) 0 14px,
+        rgba(10, 76, 137, 0.09) 14px 28px
+      ),
+      linear-gradient(180deg, var(--color-navy-tint), #fff);
+  }
+  .ph span {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-slate-soft);
+    background: rgba(255, 255, 255, 0.86);
+    padding: 7px 12px;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+/* ============================================================
+   REVEAL-ON-SCROLL  (driven by /src/scripts/reveal.ts)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

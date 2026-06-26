@@ -1,0 +1,53 @@
+---
+import Image from './Image.astro';
+import type { PhotoSlot } from '@/data/site';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  subhead: string;
+  /** Optional right-side image slot (uses the <Image> placeholder wrapper). */
+  photo?: PhotoSlot;
+}
+
+const { eyebrow, title, subhead, photo } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-gradient-to-b from-navy-800 to-navy-900 text-white">
+  <!-- soft glow (matches homepage hero) -->
+  <div
+    class="pointer-events-none absolute -right-[10%] -top-[40%] h-[560px] w-[560px] rounded-full"
+    style="background: radial-gradient(circle, rgba(4,129,57,.26), transparent 62%);"
+  >
+  </div>
+
+  <div
+    class:list={[
+      'wrap relative grid items-center gap-10 py-14 lg:py-[72px]',
+      photo ? 'lg:grid-cols-[1.1fr_.9fr]' : '',
+    ]}
+  >
+    <div class={photo ? '' : 'max-w-3xl'}>
+      <span class="eyebrow" style="color:#9fd3ff;">{eyebrow}</span>
+      <h1 class="mb-4 mt-4 text-[clamp(32px,4.4vw,52px)] font-black tracking-[-0.03em] text-white">
+        {title}
+      </h1>
+      <p class="max-w-[560px] text-[18px] leading-[1.6] text-white/85">{subhead}</p>
+    </div>
+
+    {
+      photo && (
+        <div class="relative">
+          <Image
+            src={photo.src}
+            placeholder={photo.placeholder}
+            alt={photo.alt}
+            width={520}
+            height={360}
+            class="h-[300px] w-full rounded-[20px] object-cover shadow-lift lg:h-[360px]"
+          />
+        </div>
+      )
+    }
+  </div>
+</section>

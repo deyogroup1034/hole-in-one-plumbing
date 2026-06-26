@@ -1,0 +1,150 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import PageHero from '@/components/PageHero.astro';
+import CtaBand from '@/components/CtaBand.astro';
+import Image from '@/components/Image.astro';
+import Icon from '@/components/Icon.astro';
+import { BIZ, TESTIMONIALS, JOBSITE_PHOTO } from '@/data/site';
+
+const title = 'Customer Stories & Reviews | Hole in One Plumbing';
+const description =
+  'Real Dallas–Fort Worth homeowners on their experience with Hole in One Plumbing — honest pricing and foundation work done right.';
+
+/* Draft reviews = homepage testimonials + a draft service-type tag.
+   TODO(client): replace placeholder reviews with real ones, ideally pulled
+   from the Google Business Profile. Service-type tags below are drafts too. */
+const draftServiceTypes = [
+  'Gas line replacement',
+  'Drain & sewer',
+  'Hydrostatic post-test',
+  'Emergency repair',
+  'General plumbing',
+];
+const reviews = TESTIMONIALS.map((t, i) => ({
+  ...t,
+  service: draftServiceTypes[i % draftServiceTypes.length],
+}));
+
+const Stars = 5;
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Customer Stories"
+      title="Real homes, real fixes, honest results"
+      subhead="Don’t take our word for it — here’s what North Texas homeowners say."
+    />
+
+    <!-- Trust bar -->
+    <section class="border-b border-line bg-paper">
+      <div class="wrap flex flex-wrap items-center justify-center gap-3 py-6 text-center">
+        <span class="flex gap-1 text-gold-500">
+          {Array.from({ length: Stars }).map(() => <Icon name="star" size={20} />)}
+        </span>
+        <!-- TODO(client): real star rating + # reviews; pull live from Google Business Profile once we have access. -->
+        <span class="font-display text-[16px] font-bold text-ink">
+          [rating] across [#] reviews
+        </span>
+        <span class="text-[14.5px] text-slate-faint">— TODO(client): pull from Google</span>
+      </div>
+    </section>
+
+    <!-- Featured story (case-study card with red left-border + job-site photo) -->
+    <section class="py-20 lg:py-24">
+      <div class="wrap">
+        <div class="reveal mb-10 max-w-2xl">
+          <span class="eyebrow">Featured story</span>
+          <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">A job, start to finish</h2>
+        </div>
+
+        <article class="reveal grid items-stretch gap-0 overflow-hidden rounded-[20px] border border-line border-l-[6px] border-l-accent-500 bg-white shadow-card lg:grid-cols-2">
+          <div class="order-2 p-8 lg:order-1 lg:p-10">
+            <h3 class="text-[24px] font-bold leading-snug">
+              A slab leak under a finished home — found and fixed without tearing up the house.
+            </h3>
+            <!-- TODO(client): replace with a real job story; this is a placeholder modeled on the photo.
+                 Fill the bracketed [customer/neighborhood] and [symptom] placeholders. -->
+            <p class="mt-4 text-[16.5px] leading-relaxed text-slate-strong">
+              When <span class="text-slate-faint">[a North Texas homeowner]</span> noticed
+              <span class="text-slate-faint">[the symptom]</span>, a foundation company couldn’t move
+              forward until the under-slab plumbing was cleared. We ran a hydrostatic test, isolated
+              the failed line, and repaired it — documented start to finish.
+            </p>
+            <a href="/services#hydro-pre" class="mt-6 inline-flex items-center gap-1.5 font-display text-[14.5px] font-bold text-accent-600">
+              See how foundation testing works <Icon name="arrow" size={16} />
+            </a>
+          </div>
+          <div class="order-1 min-h-[280px] lg:order-2">
+            <!-- Reuse the real job-site hero photo (placeholder until file lands) -->
+            <Image
+              src={JOBSITE_PHOTO.src}
+              placeholder={JOBSITE_PHOTO.placeholder}
+              alt={JOBSITE_PHOTO.alt}
+              width={560}
+              height={420}
+              class="h-full min-h-[280px] w-full object-cover"
+            />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Reviews grid -->
+    <section class="bg-paper py-20 lg:py-24">
+      <div class="wrap">
+        <div class="reveal mb-12 max-w-2xl">
+          <span class="eyebrow">In their words</span>
+          <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">What homeowners say</h2>
+        </div>
+        <!-- TODO(client): replace placeholder reviews with real ones, ideally pulled from Google. -->
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {
+            reviews.map((r) => (
+              <article class="reveal flex flex-col rounded-[18px] border border-line bg-white p-7">
+                <span class="mb-3 flex gap-1 text-gold-500">
+                  {Array.from({ length: Stars }).map(() => <Icon name="star" size={18} />)}
+                </span>
+                <p class="text-[15.5px] leading-relaxed text-slate-strong">“{r.quote}”</p>
+                <div class="mt-5 flex items-center justify-between border-t border-line pt-4">
+                  <div>
+                    <div class="font-display text-[15px] font-bold text-ink">{r.name}</div>
+                    <div class="text-[13.5px] text-slate-faint">{r.city}</div>
+                  </div>
+                  <span class="rounded-full bg-navy-tint px-3 py-1 font-display text-[12.5px] font-semibold text-navy-700">
+                    {r.service}
+                  </span>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Leave-a-review CTA -->
+    <section class="py-16">
+      <div class="wrap">
+        <div class="flex flex-col items-center justify-between gap-5 rounded-[20px] border border-line bg-white p-8 text-center shadow-card sm:flex-row sm:text-left">
+          <div>
+            <h2 class="text-[22px] font-bold">Worked with us? We’d love your feedback.</h2>
+            <p class="mt-1 text-[15.5px] text-slate-soft">A quick review helps other North Texas homeowners find honest help.</p>
+          </div>
+          <!-- TODO(client): Google review link -->
+          <a href="#" class="btn btn-accent flex-shrink-0">
+            <Icon name="star" size={18} /> Leave a review
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CtaBand
+      heading="Want results like these?"
+      subhead={`Call ${BIZ.phones[0]} or send a request — we’ll get right back to you.`}
+    />
+  </main>
+  <Footer />
+</Layout>

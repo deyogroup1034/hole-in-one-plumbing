@@ -1,0 +1,32 @@
+---
+import { BIZ } from '@/data/site';
+
+// TODO(client): confirm these headline numbers.
+const stats = [
+  { n: BIZ.years, l: 'Years of experience' },
+  { n: '16+', l: 'Cities served' },
+  { n: '5.0', l: 'Average review' },
+  { n: '100%', l: 'Licensed & insured' },
+];
+---
+
+<section class="relative z-10 bg-navy-700">
+  <div class="wrap grid grid-cols-2 lg:grid-cols-4">
+    {
+      stats.map((s, i) => (
+        <div
+          class:list={[
+            'px-5 py-8 text-center',
+            { 'border-r border-white/12': i < stats.length - 1 },
+            { 'max-lg:border-r-0': i % 2 === 1 },
+          ]}
+        >
+          <div class="font-display text-[42px] font-black leading-none tracking-tight text-white">
+            {s.n}
+          </div>
+          <div class="mt-2 text-[14px] font-medium text-white/75">{s.l}</div>
+        </div>
+      ))
+    }
+  </div>
+</section>

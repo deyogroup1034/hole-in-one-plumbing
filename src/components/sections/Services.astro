@@ -1,0 +1,69 @@
+---
+import Icon from '../Icon.astro';
+import { SERVICES } from '@/data/site';
+---
+
+<section id="services" class="py-20 lg:py-24">
+  <div class="wrap">
+    <div class="reveal mb-12 max-w-2xl">
+      <span class="eyebrow">What we do</span>
+      <h2 class="mt-4 text-[clamp(30px,3.6vw,46px)] font-extrabold">
+        Foundation plumbing first —<br />and everything your home needs
+      </h2>
+      <p class="mt-4 text-[18px] leading-relaxed text-slate-soft">
+        We specialize in the under-slab work most plumbers send out: hydrostatic testing and
+        isolation. We also handle the everyday repairs, with the right tools to find the real
+        problem the first time.
+      </p>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        SERVICES.map((s, i) => (
+          <article
+            class="reveal svc-card rounded-[18px] border border-line bg-white p-7"
+            style={`transition-delay:${(i % 3) * 70}ms`}
+          >
+            <div class="mb-5 grid h-14 w-14 place-items-center rounded-[15px] bg-navy-tint text-navy-700">
+              <Icon name={s.icon} size={26} />
+            </div>
+            <h3 class="mb-2.5 text-[21px] font-bold">{s.title}</h3>
+            <p class="text-[15.5px] leading-relaxed text-slate-soft">{s.blurb}</p>
+            <a
+              href="#contact"
+              class="svc-link mt-4 inline-flex items-center gap-1.5 font-display text-[14.5px] font-bold text-accent-600"
+            >
+              Request this service <Icon name="arrow" size={16} />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-10 text-center">
+      <a href="/services" class="btn btn-ghost">
+        See all services <Icon name="arrow" size={18} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .svc-card {
+    transition:
+      transform 0.25s,
+      box-shadow 0.25s,
+      border-color 0.25s;
+  }
+  .svc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--color-line-strong);
+  }
+  .svc-link svg {
+    transition: transform 0.2s;
+  }
+  .svc-card:hover .svc-link svg {
+    transform: translateX(4px);
+  }
+</style>

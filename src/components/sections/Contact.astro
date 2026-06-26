@@ -1,0 +1,82 @@
+---
+import Icon from '../Icon.astro';
+import { RequestServiceForm } from '../RequestServiceForm';
+import { BIZ, telHref } from '@/data/site';
+---
+
+<section id="contact" class="bg-paper py-20 lg:py-24">
+  <div class="wrap grid items-start gap-14 lg:grid-cols-[1fr_1.05fr]">
+    <!-- left: info -->
+    <div class="reveal">
+      <span class="eyebrow">Get in touch</span>
+      <h2 class="mt-4 text-[clamp(30px,3.6vw,46px)] font-extrabold">
+        Schedule service<br />or just call us
+      </h2>
+      <p class="mt-4 text-[18px] leading-relaxed text-slate-soft">
+        Tell us what's going on and we'll get back to you fast. Prefer to talk it through? Give us a
+        ring — we're happy to help.
+      </p>
+
+      <div class="mt-8 grid gap-3.5 sm:grid-cols-2">
+        {
+          BIZ.phones.map((p, idx) => (
+            <a
+              href={telHref(p)}
+              class="contact-card flex items-center gap-3.5 rounded-2xl border border-line bg-white px-4 py-4"
+            >
+              <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-navy-tint text-navy-700">
+                <Icon name="phone" size={22} />
+              </div>
+              <div>
+                <div class="text-[12.5px] font-semibold uppercase tracking-wide text-slate-faint">
+                  {idx === 0 ? 'Call / text' : 'Alternate line'}
+                </div>
+                <div class="font-display text-base font-bold text-ink">{p}</div>
+              </div>
+            </a>
+          ))
+        }
+
+        <a
+          href={`mailto:${BIZ.email}`}
+          class="contact-card flex items-center gap-3.5 rounded-2xl border border-line bg-white px-4 py-4"
+        >
+          <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-navy-tint text-navy-700">
+            <Icon name="mail" size={22} />
+          </div>
+          <div>
+            <div class="text-[12.5px] font-semibold uppercase tracking-wide text-slate-faint">Email us</div>
+            <div class="font-display text-base font-bold text-ink">{BIZ.email}</div>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-3.5 rounded-2xl border border-line bg-white px-4 py-4">
+          <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-accent-tint text-accent-600">
+            <Icon name="clock" size={22} />
+          </div>
+          <div>
+            <div class="text-[12.5px] font-semibold uppercase tracking-wide text-slate-faint">Hours</div>
+            <div class="font-display text-base font-bold text-ink">{BIZ.hours}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: reusable form block -->
+    <div class="reveal">
+      <RequestServiceForm client:visible />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-card {
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+  .contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+</style>

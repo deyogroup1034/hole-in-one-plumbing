@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import { BIZ, telHref } from '@/data/site';
+
+interface Props {
+  heading?: string;
+  subhead?: string;
+}
+
+const {
+  heading = 'Ready for honest plumbing, done right the first time?',
+  subhead = "Call for a straight answer and a fair price, or send a request and we'll get right back to you.",
+} = Astro.props;
+---
+
+<section class="bg-navy-900">
+  <div class="wrap flex flex-col items-center justify-between gap-7 py-14 text-center lg:flex-row lg:text-left">
+    <div>
+      <h2 class="text-[clamp(26px,3vw,38px)] font-extrabold text-white">{heading}</h2>
+      <p class="mt-2 max-w-2xl text-[17px] leading-relaxed text-white/75">{subhead}</p>
+    </div>
+    <div class="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
+      <!-- TODO(client): confirm primary business phone number -->
+      <a href={telHref(BIZ.phones[0])} class="btn btn-accent btn-lg">
+        <Icon name="phone" size={18} /> Call {BIZ.phones[0]}
+      </a>
+      <a href="/contact" class="btn btn-light btn-lg">
+        Request Service <Icon name="arrow" size={18} />
+      </a>
+    </div>
+  </div>
+</section>
