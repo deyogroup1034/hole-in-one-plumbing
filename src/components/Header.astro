@@ -39,8 +39,8 @@ import { BIZ, NAV_LINKS, telHref } from '@/data/site';
         <img src="/assets/logo.png" alt={BIZ.name} width={77} height={56} class="h-14 w-auto" />
       </a>
 
-      <!-- Desktop nav -->
-      <nav class="ml-2 hidden items-center gap-7 lg:flex">
+      <!-- Desktop nav — fills the space between logo and CTAs and centers itself -->
+      <nav class="hidden flex-1 items-center justify-center gap-10 lg:flex xl:gap-12">
         {
           NAV_LINKS.map(([label, href]) => (
             <a
@@ -54,7 +54,7 @@ import { BIZ, NAV_LINKS, telHref } from '@/data/site';
       </nav>
 
       <!-- Desktop CTAs -->
-      <div class="ml-auto hidden items-center gap-3 lg:flex">
+      <div class="hidden flex-shrink-0 items-center gap-3 lg:flex">
         <a
           href={telHref(BIZ.phones[0])}
           class="btn btn-ghost"

@@ -213,9 +213,9 @@ export const HERO_BG: PhotoSlot = {
   alt: 'Hole in One Plumbing technician in front of the service truck',
 };
 export const HERO_CARD: PhotoSlot = {
-  src: 'https://images.unsplash.com/photo-1676210134188-4c05dd172f89?auto=format&fit=crop&w=1100&q=80',
-  placeholder: 'Photo · plumber on the job',
-  alt: 'Plumber repairing a pipe on the job',
+  src: 'https://images.unsplash.com/photo-1530122577122-6b8010d1a6b3?auto=format&fit=crop&w=1100&q=80',
+  placeholder: 'Photo · hydrostatic pressure test',
+  alt: 'Pressure gauge on copper pipes during a plumbing pressure test',
 };
 
 /* Licensed Unsplash stock placeholders. PRE-LAUNCH: replace with real client photos. */
