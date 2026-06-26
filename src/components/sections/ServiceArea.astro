@@ -31,10 +31,12 @@ import { AREAS } from '@/data/site';
     </div>
 
     <div class="reveal relative overflow-hidden rounded-[20px] shadow-lift">
-      <!-- Live North Texas map (keyless Google Maps embed — no API key needed) -->
+      <!-- Live North Texas map (keyless Google Maps embed — no API key needed).
+           Centered with explicit lat/lon (ll) so it never falls back to a
+           world view the way a place-name query can. -->
       <iframe
         title="Map of the Hole in One Plumbing service area across the Dallas–Fort Worth metroplex"
-        src="https://maps.google.com/maps?q=Dallas-Fort%20Worth%20metroplex&t=&z=9&ie=UTF8&iwloc=&output=embed"
+        src="https://maps.google.com/maps?ll=32.9,-96.9&z=9&output=embed"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         class="h-[400px] w-full border-0"
