@@ -17,12 +17,12 @@ import { SERVICES } from '@/data/site';
       </p>
     </div>
 
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {
         SERVICES.map((s, i) => (
           <article
             class="reveal svc-card rounded-[18px] border border-line bg-white p-7"
-            style={`transition-delay:${(i % 3) * 70}ms`}
+            style={`transition-delay:${(i % 4) * 70}ms`}
           >
             <div class="mb-5 grid h-14 w-14 place-items-center rounded-[15px] bg-navy-tint text-navy-700">
               <Icon name={s.icon} size={26} />

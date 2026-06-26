@@ -95,6 +95,20 @@ export const SERVICES: Service[] = [
       'Repair, replacement, and tankless upgrades — installed to code with up-front pricing on both the unit and the labor.',
     icon: 'flame',
   },
+  {
+    key: 'gas-lines',
+    title: 'Gas Lines',
+    blurb:
+      'Safe install, repair, and conversion for stoves, dryers, and more — pressure-tested and inspection-ready.',
+    icon: 'flame',
+  },
+  {
+    key: 'backflow',
+    title: 'Backflow',
+    blurb:
+      'Testing, repair, and replacement to protect your clean water and keep you city-compliant.',
+    icon: 'shield',
+  },
 ];
 
 /* TODO(client): replace with verified Google/Facebook reviews + consent.
