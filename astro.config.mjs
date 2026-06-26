@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO(client): confirm production domain (used for canonical + OG URLs).
+  // Confirmed launch domain (used for canonical + OG URLs).
+  // PRE-LAUNCH: cut DNS over to Cloudflare Pages.
   site: 'https://holeinoneplumbing.com',
 
   // Static by default. Individual routes opt into on-demand (Pages Function)

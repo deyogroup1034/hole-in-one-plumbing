@@ -4,9 +4,9 @@ import Image from '../Image.astro';
 import { BIZ, JOBSITE_PHOTO, telHref } from '@/data/site';
 
 const trust = [
-  { ic: 'award' as const, t: `${BIZ.years} years`, s: 'in business' },
+  { ic: 'award' as const, t: `Since ${BIZ.founded}`, s: 'family-run' },
   { ic: 'shield' as const, t: 'Licensed', s: '& insured' },
-  { ic: 'star' as const, t: '5-star', s: 'rated locally' },
+  { ic: 'star' as const, t: 'Neighborhood', s: 'Favorite (Nextdoor)' },
 ];
 ---
 
@@ -26,7 +26,7 @@ const trust = [
       </h1>
       <p class="max-w-[520px] text-[18.5px] leading-[1.62] text-white/85">
         From hidden slab leaks and hydrostatic testing to stubborn drains, the team at {BIZ.name} brings
-        {BIZ.years} years of straight-talking, fairly-priced service to homeowners across North Texas.
+        {BIZ.experience} of straight-talking, fairly-priced service to homeowners across North Texas.
       </p>
 
       <div class="mt-[30px] flex flex-wrap gap-3.5">

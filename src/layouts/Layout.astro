@@ -18,16 +18,25 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 
 // Global LocalBusiness (Plumber) schema — present on every page.
-// TODO(client): add real postal address, geo, opening hours, and sameAs
-// (Google Business Profile / Facebook) once confirmed.
+// Service-area business: no street address (PO Box only), so we publish
+// areaServed instead of a postal address. PRE-LAUNCH: add `sameAs`
+// (Google Business Profile / BBB / Nextdoor URLs) once collected.
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'Plumber',
-  name: BIZ.name,
+  name: BIZ.legalName,
   description,
   telephone: telHref(BIZ.phones[0]).replace('tel:', '+1'),
   email: BIZ.email,
   areaServed: 'Dallas–Fort Worth Metroplex',
+  address: { '@type': 'PostalAddress', addressLocality: 'Wylie', addressRegion: 'TX', addressCountry: 'US' },
+  foundingDate: String(BIZ.founded),
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '17:00',
+  },
   url: canonical,
 };
 

@@ -33,7 +33,6 @@ const description =
         <div class="reveal rounded-[22px] border border-line bg-white p-8 shadow-card sm:p-9">
           <h2 class="text-[23px] font-bold">Reach us directly</h2>
           <div class="mt-6 grid gap-4">
-            <!-- TODO(client): confirm HIO business number -->
             <a href={telHref(BIZ.phones[0])} class="flex items-center gap-3.5">
               <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-navy-tint text-navy-700"><Icon name="phone" size={22} /></div>
               <div>
@@ -42,16 +41,14 @@ const description =
               </div>
             </a>
 
-            <!-- TODO(client): confirm 24/7 emergency number, or remove this row -->
             <a href={telHref(BIZ.phones[1])} class="flex items-center gap-3.5">
-              <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-accent-tint text-accent-600"><Icon name="phone" size={22} /></div>
+              <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-navy-tint text-navy-700"><Icon name="phone" size={22} /></div>
               <div>
-                <div class="text-[12.5px] font-semibold uppercase tracking-wide text-slate-faint">Emergency line</div>
+                <div class="text-[12.5px] font-semibold uppercase tracking-wide text-slate-faint">Alternate line</div>
                 <div class="font-display text-base font-bold text-ink">{BIZ.phones[1]}</div>
               </div>
             </a>
 
-            <!-- TODO(client): confirm public email -->
             <a href={`mailto:${BIZ.email}`} class="flex items-center gap-3.5">
               <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-navy-tint text-navy-700"><Icon name="mail" size={22} /></div>
               <div>
@@ -60,7 +57,6 @@ const description =
               </div>
             </a>
 
-            <!-- TODO(client): confirm hours -->
             <div class="flex items-center gap-3.5">
               <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-navy-tint text-navy-700"><Icon name="clock" size={22} /></div>
               <div>
@@ -73,7 +69,6 @@ const description =
               <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-navy-tint text-navy-700"><Icon name="pin" size={22} /></div>
               <div>
                 <div class="text-[12.5px] font-semibold uppercase tracking-wide text-slate-faint">Service area</div>
-                <!-- TODO(client): confirm cities served -->
                 <div class="font-display text-base font-bold text-ink">Dallas–Fort Worth metroplex</div>
               </div>
             </div>
@@ -82,7 +77,6 @@ const description =
               <div class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-navy-tint text-navy-700"><Icon name="award" size={22} /></div>
               <div>
                 <div class="text-[12.5px] font-semibold uppercase tracking-wide text-slate-faint">License</div>
-                <!-- TODO(client): confirm TX Master Plumber #M37741 -->
                 <div class="font-display text-base font-bold text-ink">TX {BIZ.license}</div>
               </div>
             </div>
@@ -96,8 +90,6 @@ const description =
       <div class="wrap max-w-3xl">
         <span class="eyebrow">Where we work</span>
         <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">Across the DFW Metroplex</h2>
-        <!-- TODO: decide Google Maps embed vs styled area box -->
-        <!-- TODO(client): confirm cities served -->
         <div class="mt-7 flex flex-wrap gap-2.5">
           {
             AREAS.map((a) => (
@@ -119,8 +111,7 @@ const description =
           </div>
           <div>
             <h2 class="text-2xl font-extrabold text-white">Plumbing emergency? Call now.</h2>
-            <!-- TODO(client): confirm 24/7 emergency availability -->
-            <p class="mt-1 text-[15.5px] text-white/70">We’ll move fast to stop the damage.</p>
+            <p class="mt-1 text-[15.5px] text-white/70">Fast emergency response — we’ll move quickly to stop the damage.</p>
           </div>
         </div>
         <a href={telHref(BIZ.phones[0])} class="btn btn-accent btn-lg flex-shrink-0">

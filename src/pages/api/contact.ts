@@ -44,8 +44,8 @@ export const POST: APIRoute = async ({ request }) => {
     receivedAt: new Date().toISOString(),
   };
 
-  // TODO(client): wire up real lead delivery here. Options on Cloudflare:
-  //   - Email via Resend / MailChannels / Cloudflare Email Routing
+  // PRE-LAUNCH: wire up real lead delivery here. Options on Cloudflare:
+  //   - Email via Resend (confirmed choice) / Cloudflare Email Routing
   //   - Persist to D1 or KV, or forward to a CRM webhook
   // Secrets/bindings are available on `locals.runtime.env` (Cloudflare).
   // For now we just log so the request can be verified end-to-end.

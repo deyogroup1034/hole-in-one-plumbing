@@ -1,28 +1,35 @@
 /* ============================================================
    SITE DATA — single source of truth shared by .astro sections
-   and React islands.
-
-   TODO(client): every value tagged `TODO` below is a draft and
-   must be confirmed with the client before launch.
+   and React islands. Values are owner-confirmed (hio-site-facts.md)
+   except where flagged PLACEHOLDER (reviews) or as a pre-launch task.
    ============================================================ */
 
 export const BIZ = {
   name: 'Hole in One Plumbing',
+  legalName: 'Hole in One Plumbing, LLC',
+  owner: 'Oscar Sherman',
   tagline: 'Foundation plumbing specialists for the DFW Metroplex',
-  // TODO(client): confirm primary + alternate phone numbers.
-  phones: ['(972) 429-2223', '(972) 475-5458'],
-  // TODO(client): confirm public-facing email address.
+  // Service-area business based in Wylie, TX 75098 — no public street address (PO Box only).
+  homeBase: 'Wylie, TX',
+  // Primary line is the public number; secondary is optional to display.
+  phones: ['(972) 429-2223', '(469) 855-9041'],
   email: 'info@holeinoneplumbing.com',
-  // TODO(client): confirm exact Master Plumber license number (draft from prototype).
+  // TX law requires displaying the RMP license number on every page.
   license: 'Master Plumber #M37741',
-  // TODO(client): confirm years in business.
-  years: '20+',
-  // TODO(client): confirm office hours + whether 24/7 emergency is offered.
+  founded: 2006,
+  experience: 'nearly two decades',
   hours: 'Mon–Fri 8a–5p',
-  emergency: '24/7 emergency response', // TODO(client): confirm true 24/7 availability.
-  // TODO(client): confirm financing partner / terms before publishing.
-  financing: 'Financing available on qualifying repairs',
+  // Fast emergency response — NOT 24/7. Never claim 24/7 anywhere.
+  emergency: 'Fast emergency response',
 } as const;
+
+/* Real, verifiable trust signals (NOT a star rating — we don't publish an
+   unverified aggregate score). Sources: BBB, Nextdoor, foundation-company referrals. */
+export const TRUST_BADGES: { icon: IconName; label: string }[] = [
+  { icon: 'award', label: 'BBB A+ Accredited' },
+  { icon: 'star', label: 'Nextdoor Neighborhood Favorite' },
+  { icon: 'shield', label: 'Trusted by DFW foundation companies' },
+];
 
 export type IconName =
   | 'gauge'
@@ -95,74 +102,74 @@ export const SERVICES: Service[] = [
       'Repair, replacement, and tankless upgrades — installed to code with up-front pricing on both the unit and the labor.',
     icon: 'flame',
   },
+];
+// Note: Gas Lines & Backflow are full blocks on /services but are intentionally
+// NOT featured on the homepage grid (homepage keeps the 6 foundation-first cards).
+
+/* ⚠️ PLACEHOLDER reviews — invented for layout only. DO NOT LAUNCH AS-IS.
+   Publishing fabricated testimonials on a live commercial site is deceptive
+   under FTC rules. PRE-LAUNCH: replace all of these with real, verifiable
+   customer reviews (collect fresh Google reviews, or migrate genuine
+   Angi/Yelp/BuildZoom reviews with proper attribution + consent). */
+export interface Story {
+  quote: string;
+  name: string;
+  city: string;
+  service: string;
+}
+
+export const TESTIMONIALS: Story[] = [
   {
-    key: 'gas-lines',
-    title: 'Gas Lines',
-    blurb:
-      'Safe install, repair, and conversion for stoves, dryers, and more — pressure-tested and inspection-ready.',
-    icon: 'flame',
+    quote:
+      'Our foundation crew sent Hole in One to re-check the plumbing after the lift. On time, thorough, and they explained every step. No surprises.',
+    name: 'Karen M.',
+    city: 'Plano, TX',
+    service: 'Foundation Post-Test',
   },
   {
-    key: 'backflow',
-    title: 'Backflow',
-    blurb:
-      'Testing, repair, and replacement to protect your clean water and keep you city-compliant.',
-    icon: 'shield',
+    quote:
+      'Another company told me I needed a major repair. Hole in One found the real problem in under an hour and charged me a fraction of the price. Honest people.',
+    name: 'David H.',
+    city: 'Rockwall, TX',
+    service: 'Slab Leak / Diagnosis',
+  },
+  {
+    quote:
+      'They replaced our old cast-iron lines with PVC by tunneling instead of tearing up our floors. Clean, respectful crew — they treated our home like their own.',
+    name: 'The Nguyen Family',
+    city: 'Sachse, TX',
+    service: 'Cast Iron to PVC',
+  },
+  {
+    quote:
+      'Quick tankless install, sized right for our house, and the final price matched the quote exactly. Couldn’t ask for more.',
+    name: 'Brian T.',
+    city: 'Murphy, TX',
+    service: 'Tankless Water Heater',
+  },
+  {
+    quote:
+      'Needed a pressure test before foundation work. They were early both times, clearly knew their stuff, and walked me through the whole process.',
+    name: 'Stephanie R.',
+    city: 'Wylie, TX',
+    service: 'Hydrostatic Pre-Test',
   },
 ];
 
-/* TODO(client): replace with verified Google/Facebook reviews + consent.
-   (Draft copy carried over from the approved prototype.) */
-export const TESTIMONIALS = [
-  {
-    quote:
-      'Replacing the gas line went extremely smooth. He was extremely clean and time efficient. His honesty was appreciated — the final price was actually less than quoted. I would recommend him for all future services. Excellent!',
-    name: 'Mr. Haddock',
-    city: 'McKinney, TX',
-  },
-  {
-    quote:
-      "He saved me about $6,000 by properly diagnosing a sink drain as a clog rather than a broken pipe like another company claimed. He cleared the nasty clog in about half an hour. As far as I'm concerned, Oscar is my plumber for life.",
-    name: 'Mr. Hoskins',
-    city: 'Dallas, TX',
-  },
-  {
-    quote:
-      'The initial customer service was by far the best I have experienced. Genuine interest and concern with problems other plumbers failed to fix. His price was very reasonable. I would not hesitate to call again.',
-    name: 'Ms. West',
-    city: 'Mesquite, TX',
-  },
-  {
-    quote:
-      'Came out on zero notice Sunday afternoon to finish a job I started. (I fought the faucet, the faucet won.) Quickly assessed the situation, gave a fair quote, and the job was done quickly and very well.',
-    name: 'Ms. Romero',
-    city: 'Dallas, TX',
-  },
-  {
-    quote:
-      "It's comforting to know I have a plumbing service I can use that has a high level of integrity — that's difficult to find these days. I will recommend you to anyone that asks.",
-    name: 'Mr. Durham',
-    city: 'Allen, TX',
-  },
-];
-
-/* TODO(client): confirm exact list of cities served. */
+// Confirmed service area: greater DFW, "from Rockwall to Frisco, Carrollton to Anna."
 export const AREAS = [
-  'Dallas',
-  'Fort Worth',
-  'Plano',
-  'Frisco',
-  'McKinney',
-  'Allen',
   'Wylie',
   'Sachse',
   'Murphy',
+  'Plano',
   'Rockwall',
-  'Garland',
-  'Richardson',
+  'Frisco',
   'Carrollton',
-  'Mesquite',
-  'Irving',
+  'Anna',
+  'Lucas',
+  'Parker',
+  'Little Elm',
+  'Keller',
   'Arlington',
 ];
 
@@ -175,9 +182,9 @@ export const NAV_LINKS: [label: string, href: string][] = [
 
 /* Centralized, swappable image slots. Each is fed through the <Image>
    wrapper. Right now they render styled placeholder boxes (matching the
-   approved prototype). At launch, add a real `src` to any slot and the
-   same wrapper renders the photo — no component changes needed.
-   TODO(client): add real licensed photos (set `src` on each slot). */
+   approved prototype). To use a real photo, set `src` on a slot — the same
+   wrapper renders the <img>, no component changes needed.
+   PRE-LAUNCH: add real licensed photos (set `src` on each slot). */
 export interface PhotoSlot {
   /** Set this to a real image URL/path to render a photo. Leave undefined to show the placeholder box. */
   src?: string;
@@ -187,7 +194,7 @@ export interface PhotoSlot {
 
 /* The one REAL job-site photo, reused on the homepage hero, the /services
    foundation section, and the /customer-stories featured story.
-   TODO(client): drop the real file at public/assets/hio_hero_clean.jpg, then
+   PRE-LAUNCH: drop the real file at public/assets/hio_hero_clean.jpg, then
    uncomment the `src` line below — every placement swaps to the photo at once. */
 export const JOBSITE_PHOTO: PhotoSlot = {
   // src: '/assets/hio_hero_clean.jpg',

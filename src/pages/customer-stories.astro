@@ -6,28 +6,13 @@ import PageHero from '@/components/PageHero.astro';
 import CtaBand from '@/components/CtaBand.astro';
 import Image from '@/components/Image.astro';
 import Icon from '@/components/Icon.astro';
-import { BIZ, TESTIMONIALS, JOBSITE_PHOTO } from '@/data/site';
+import { BIZ, TESTIMONIALS, TRUST_BADGES, JOBSITE_PHOTO } from '@/data/site';
 
 const title = 'Customer Stories & Reviews | Hole in One Plumbing';
 const description =
   'Real Dallas–Fort Worth homeowners on their experience with Hole in One Plumbing — honest pricing and foundation work done right.';
 
-/* Draft reviews = homepage testimonials + a draft service-type tag.
-   TODO(client): replace placeholder reviews with real ones, ideally pulled
-   from the Google Business Profile. Service-type tags below are drafts too. */
-const draftServiceTypes = [
-  'Gas line replacement',
-  'Drain & sewer',
-  'Hydrostatic post-test',
-  'Emergency repair',
-  'General plumbing',
-];
-const reviews = TESTIMONIALS.map((t, i) => ({
-  ...t,
-  service: draftServiceTypes[i % draftServiceTypes.length],
-}));
-
-const Stars = 5;
+const STARS = 5;
 ---
 
 <Layout title={title} description={description}>
@@ -39,17 +24,17 @@ const Stars = 5;
       subhead="Don’t take our word for it — here’s what North Texas homeowners say."
     />
 
-    <!-- Trust bar -->
+    <!-- Trust bar — real, verifiable badges (NOT an unverified star rating) -->
     <section class="border-b border-line bg-paper">
-      <div class="wrap flex flex-wrap items-center justify-center gap-3 py-6 text-center">
-        <span class="flex gap-1 text-gold-500">
-          {Array.from({ length: Stars }).map(() => <Icon name="star" size={20} />)}
-        </span>
-        <!-- TODO(client): real star rating + # reviews; pull live from Google Business Profile once we have access. -->
-        <span class="font-display text-[16px] font-bold text-ink">
-          [rating] across [#] reviews
-        </span>
-        <span class="text-[14.5px] text-slate-faint">— TODO(client): pull from Google</span>
+      <div class="wrap flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-6 text-center">
+        {
+          TRUST_BADGES.map((b) => (
+            <span class="inline-flex items-center gap-2 font-display text-[15px] font-bold text-slate-strong">
+              <Icon name={b.icon} size={20} class="text-accent-600" />
+              {b.label}
+            </span>
+          ))
+        }
       </div>
     </section>
 
@@ -61,25 +46,24 @@ const Stars = 5;
           <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">A job, start to finish</h2>
         </div>
 
+        <!-- PLACEHOLDER featured story — built around the real job-site photo.
+             PRE-LAUNCH: replace with a real, verifiable job story + consent. -->
         <article class="reveal grid items-stretch gap-0 overflow-hidden rounded-[20px] border border-line border-l-[6px] border-l-accent-500 bg-white shadow-card lg:grid-cols-2">
           <div class="order-2 p-8 lg:order-1 lg:p-10">
             <h3 class="text-[24px] font-bold leading-snug">
-              A slab leak under a finished home — found and fixed without tearing up the house.
+              A slab leak found and fixed without tearing up the house — Wylie, TX.
             </h3>
-            <!-- TODO(client): replace with a real job story; this is a placeholder modeled on the photo.
-                 Fill the bracketed [customer/neighborhood] and [symptom] placeholders. -->
             <p class="mt-4 text-[16.5px] leading-relaxed text-slate-strong">
-              When <span class="text-slate-faint">[a North Texas homeowner]</span> noticed
-              <span class="text-slate-faint">[the symptom]</span>, a foundation company couldn’t move
-              forward until the under-slab plumbing was cleared. We ran a hydrostatic test, isolated
-              the failed line, and repaired it — documented start to finish.
+              “Before our foundation company could start, the under-slab plumbing had to pass a
+              hydrostatic test. Hole in One isolated a failed line, repaired it, and documented
+              everything start to finish — so the foundation work stayed on schedule.”
             </p>
             <a href="/services#hydro-pre" class="mt-6 inline-flex items-center gap-1.5 font-display text-[14.5px] font-bold text-accent-600">
               See how foundation testing works <Icon name="arrow" size={16} />
             </a>
           </div>
           <div class="order-1 min-h-[280px] lg:order-2">
-            <!-- Reuse the real job-site hero photo (placeholder until file lands) -->
+            <!-- Reuse the real job-site hero photo (placeholder box until file lands) -->
             <Image
               src={JOBSITE_PHOTO.src}
               placeholder={JOBSITE_PHOTO.placeholder}
@@ -100,13 +84,15 @@ const Stars = 5;
           <span class="eyebrow">In their words</span>
           <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">What homeowners say</h2>
         </div>
-        <!-- TODO(client): replace placeholder reviews with real ones, ideally pulled from Google. -->
+        <!-- PLACEHOLDER reviews — every card below is invented for layout.
+             PRE-LAUNCH: replace with real, verifiable reviews (see TESTIMONIALS in site.ts). -->
         <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {
-            reviews.map((r) => (
+            TESTIMONIALS.map((r) => (
               <article class="reveal flex flex-col rounded-[18px] border border-line bg-white p-7">
+                {/* PLACEHOLDER review card — replace before launch */}
                 <span class="mb-3 flex gap-1 text-gold-500">
-                  {Array.from({ length: Stars }).map(() => <Icon name="star" size={18} />)}
+                  {Array.from({ length: STARS }).map(() => <Icon name="star" size={18} />)}
                 </span>
                 <p class="text-[15.5px] leading-relaxed text-slate-strong">“{r.quote}”</p>
                 <div class="mt-5 flex items-center justify-between border-t border-line pt-4">
@@ -133,7 +119,7 @@ const Stars = 5;
             <h2 class="text-[22px] font-bold">Worked with us? We’d love your feedback.</h2>
             <p class="mt-1 text-[15.5px] text-slate-soft">A quick review helps other North Texas homeowners find honest help.</p>
           </div>
-          <!-- TODO(client): Google review link -->
+          <!-- PRE-LAUNCH: set the real Google review link as the href below. -->
           <a href="#" class="btn btn-accent flex-shrink-0">
             <Icon name="star" size={18} /> Leave a review
           </a>

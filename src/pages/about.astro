@@ -25,7 +25,6 @@ const differentiators: { icon: IconName; t: string; s: string }[] = [
   },
   {
     icon: 'shield',
-    // TODO(client): confirm TX Master Plumber License #M37741.
     t: 'Licensed & insured.',
     s: `TX Master Plumber License ${BIZ.license.replace('Master Plumber ', '')}. Fully insured for your protection.`,
   },
@@ -43,9 +42,8 @@ const differentiators: { icon: IconName; t: string; s: string }[] = [
     <PageHero
       eyebrow="About Hole in One Plumbing"
       title="Family-run plumbers who treat your home like our own"
-      subhead={`For ${BIZ.years} years, North Texas homeowners have trusted us for the foundation and plumbing work other companies pass on.`}
+      subhead={`For ${BIZ.experience}, North Texas homeowners have trusted us for the foundation and plumbing work other companies pass on.`}
     />
-    {/* TODO(client): confirm # years in business (subhead above uses the draft value). */}
 
     <!-- Our story -->
     <section class="py-20 lg:py-24">
@@ -54,9 +52,10 @@ const differentiators: { icon: IconName; t: string; s: string }[] = [
         <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">Built on telling the truth</h2>
         <div class="mt-6 space-y-5 text-[18px] leading-relaxed text-slate-strong">
           <p>
-            Hole in One Plumbing is a family-owned company serving the Dallas–Fort Worth metroplex.
-            We built this business on a simple idea: tell people the truth, charge a fair price, and
-            do the job right the first time.
+            Hole in One Plumbing is a family-owned company that has served the Dallas–Fort Worth
+            metroplex from our home base in Wylie since {BIZ.founded}. Owner {BIZ.owner} built the
+            business on a simple idea: tell people the truth, charge a fair price, and do the job
+            right the first time.
           </p>
           <p>
             While a lot of plumbers shy away from foundation-related work — the slab leaks, the
@@ -64,8 +63,11 @@ const differentiators: { icon: IconName; t: string; s: string }[] = [
             When a foundation company or a homeowner needs to know whether the plumbing under a slab
             is sound, they call us.
           </p>
+          <p>
+            Today the Sherman family still runs it the same way — family-operated, BBB A+ accredited,
+            and a repeat Nextdoor Neighborhood Favorite across North Texas.
+          </p>
         </div>
-        <!-- TODO(client): home base — prototype said Wylie, TX; confirm before publishing. -->
       </div>
     </section>
 
@@ -103,7 +105,6 @@ const differentiators: { icon: IconName; t: string; s: string }[] = [
           We cover communities across the Dallas–Fort Worth metroplex. Don’t see your town? Give us a
           call — chances are we’re already working nearby.
         </p>
-        <!-- TODO(client): confirm the real list of cities served. -->
         <div class="mt-7 flex flex-wrap gap-2.5">
           {
             AREAS.map((a) => (
@@ -116,21 +117,16 @@ const differentiators: { icon: IconName; t: string; s: string }[] = [
       </div>
     </section>
 
-    <!-- Credentials strip -->
+    <!-- Credentials strip (confirmed badges only) -->
     <section class="border-y border-line bg-paper">
       <div class="wrap flex flex-wrap items-center justify-center gap-x-6 gap-y-3 py-7 text-center font-display text-[14.5px] font-semibold text-slate-strong">
-        <span class="inline-flex items-center gap-2"><Icon name="shield" size={18} class="text-accent-600" /> Licensed</span>
+        <span class="inline-flex items-center gap-2"><Icon name="shield" size={18} class="text-accent-600" /> Licensed &amp; insured</span>
         <span class="text-line-strong">·</span>
-        <span class="inline-flex items-center gap-2"><Icon name="check" size={18} class="text-accent-600" /> Insured</span>
+        <span class="inline-flex items-center gap-2"><Icon name="check" size={18} class="text-accent-600" /> Since {BIZ.founded}</span>
         <span class="text-line-strong">·</span>
-        <!-- TODO(client): years in business -->
-        <span class="text-slate-faint">{BIZ.years} years in business (TODO confirm)</span>
+        <span class="inline-flex items-center gap-2"><Icon name="award" size={18} class="text-accent-600" /> BBB A+ Accredited</span>
         <span class="text-line-strong">·</span>
-        <!-- TODO(client): BBB / Google rating if applicable -->
-        <span class="text-slate-faint">BBB / Google rating — TODO(client)</span>
-        <span class="text-line-strong">·</span>
-        <!-- TODO(client): "Proud sponsor of the Wylie Pirates" — confirm before including. -->
-        <span class="text-slate-faint">Proud sponsor of the Wylie Pirates — TODO(client) confirm</span>
+        <span class="inline-flex items-center gap-2"><Icon name="star" size={18} class="text-accent-600" /> Nextdoor Neighborhood Favorite</span>
       </div>
     </section>
 
