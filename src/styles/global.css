@@ -229,24 +229,27 @@
 }
 
 /* ============================================================
-   REVEAL-ON-SCROLL  (driven by /src/scripts/reveal.ts)
-   Progressive enhancement: the hidden/animated state ONLY applies once
-   reveal.ts adds `.js-reveal` to <html>. Without JS, content is visible.
+   REVEAL ON LOAD — pure CSS, no JavaScript.
+   A one-shot fade/slide that ENDS fully visible (animation-fill-mode:
+   both). The element's resting state has no opacity rule, so its default
+   opacity is 1 — meaning content is visible even if the animation never
+   runs (reduced-motion, old browser, etc.). Content can never stay hidden.
    ============================================================ */
-.js-reveal .reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition:
-    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
-.js-reveal .reveal.in {
-  opacity: 1;
-  transform: none;
+.reveal {
+  animation: reveal-in 0.6s ease-out both;
 }
 @media (prefers-reduced-motion: reduce) {
-  .js-reveal .reveal {
-    opacity: 1 !important;
-    transform: none !important;
+  .reveal {
+    animation: none;
   }
 }
