@@ -192,24 +192,27 @@ export interface PhotoSlot {
   alt: string;
 }
 
-/* The one REAL job-site photo, reused on the homepage hero, the /services
+/* Shared job-site photo, reused on the homepage hero, the /services
    foundation section, and the /customer-stories featured story.
-   PRE-LAUNCH: drop the real file at public/assets/hio_hero_clean.jpg, then
-   uncomment the `src` line below — every placement swaps to the photo at once. */
+   Licensed Unsplash stock for now (Unsplash License — free commercial use).
+   PRE-LAUNCH: swap `src` for a real client photo (e.g. drop the file at
+   public/assets/hio_hero_clean.jpg and point src there) — every placement
+   swaps at once. */
 export const JOBSITE_PHOTO: PhotoSlot = {
-  // src: '/assets/hio_hero_clean.jpg',
+  src: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1100&q=80',
   placeholder: 'Photo · plumber on the job',
   alt: 'Hole in One Plumbing technician on a foundation plumbing job',
 };
 
+/* Licensed Unsplash stock placeholders. PRE-LAUNCH: replace with real client photos. */
 export const PHOTOS: Record<'why' | 'area', PhotoSlot> = {
   why: {
-    // src: '/assets/photos/team-van.jpg',
+    src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1100&q=80',
     placeholder: 'Photo · team & service van',
     alt: 'Hole in One Plumbing team and service van',
   },
   area: {
-    // src: '/assets/photos/dfw-map.jpg',
+    src: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1100&q=80',
     placeholder: 'Map · DFW service area',
     alt: 'Map of the Dallas–Fort Worth service area',
   },
@@ -243,7 +246,11 @@ export const FEATURED_STORIES: FeaturedStory[] = [
     service: 'Hydrostatic Post-Test',
     body: 'After the slab was lifted, we post-tested each under-slab line and handed over written results — proof the plumbing came through the foundation repair sound.',
     serviceHref: '/services#hydro-post',
-    photo: { placeholder: 'Photo · post-test, Plano', alt: 'Documented hydrostatic post-test job' },
+    photo: {
+      src: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=1100&q=80',
+      placeholder: 'Photo · post-test, Plano',
+      alt: 'Documented hydrostatic post-test job',
+    },
   },
   {
     title: 'Cast-iron drains converted to PVC — by tunneling, not demolition',
@@ -251,7 +258,11 @@ export const FEATURED_STORIES: FeaturedStory[] = [
     service: 'Under-Slab Repair',
     body: 'Aging cast-iron lines were failing beneath an older home. We tunneled under the slab and converted them to PVC, leaving the finished floors untouched.',
     serviceHref: '/services#foundation-repair',
-    photo: { placeholder: 'Photo · under-slab repair, Sachse', alt: 'Under-slab cast-iron to PVC conversion job' },
+    photo: {
+      src: 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1100&q=80',
+      placeholder: 'Photo · under-slab repair, Sachse',
+      alt: 'Under-slab cast-iron to PVC conversion job',
+    },
   },
   {
     title: 'A second opinion that saved thousands',
@@ -259,7 +270,11 @@ export const FEATURED_STORIES: FeaturedStory[] = [
     service: 'Pipe & Sewer Isolation',
     body: 'Another company called for a major repair. We isolated the system, pinpointed the real failure in under an hour, and fixed only what actually needed fixing.',
     serviceHref: '/services#isolation',
-    photo: { placeholder: 'Photo · isolation test, Rockwall', alt: 'Pipe and sewer isolation diagnosis job' },
+    photo: {
+      src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1100&q=80',
+      placeholder: 'Photo · isolation test, Rockwall',
+      alt: 'Pipe and sewer isolation diagnosis job',
+    },
   },
   {
     title: 'A tankless system, sized and installed right',
@@ -267,7 +282,11 @@ export const FEATURED_STORIES: FeaturedStory[] = [
     service: 'Water Heaters',
     body: 'We swapped an aging tank for a tankless unit sized for the home — installed to code with up-front pricing on both the unit and the labor.',
     serviceHref: '/services#water-heater',
-    photo: { placeholder: 'Photo · tankless install, Murphy', alt: 'Tankless water heater installation job' },
+    photo: {
+      src: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1100&q=80',
+      placeholder: 'Photo · tankless install, Murphy',
+      alt: 'Tankless water heater installation job',
+    },
   },
 ];
 
