@@ -204,6 +204,20 @@ export const JOBSITE_PHOTO: PhotoSlot = {
   alt: 'Hole in One Plumbing technician on a foundation plumbing job',
 };
 
+/* Homepage hero imagery — a full-bleed background (technician + service van,
+   shown darkened behind the hero) and the foreground photo card.
+   Licensed Unsplash stock; PRE-LAUNCH: swap both for the client's real photos. */
+export const HERO_BG: PhotoSlot = {
+  src: 'https://images.unsplash.com/photo-1663181191222-a20536e7419c?auto=format&fit=crop&w=1920&q=80',
+  placeholder: 'Photo · technician and service truck',
+  alt: 'Hole in One Plumbing technician in front of the service truck',
+};
+export const HERO_CARD: PhotoSlot = {
+  src: 'https://images.unsplash.com/photo-1676210134188-4c05dd172f89?auto=format&fit=crop&w=1100&q=80',
+  placeholder: 'Photo · plumber on the job',
+  alt: 'Plumber repairing a pipe on the job',
+};
+
 /* Licensed Unsplash stock placeholders. PRE-LAUNCH: replace with real client photos. */
 export const PHOTOS: Record<'why' | 'area', PhotoSlot> = {
   why: {

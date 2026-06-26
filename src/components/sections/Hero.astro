@@ -1,7 +1,7 @@
 ---
 import Icon from '../Icon.astro';
 import Image from '../Image.astro';
-import { BIZ, JOBSITE_PHOTO, telHref } from '@/data/site';
+import { BIZ, HERO_BG, HERO_CARD, telHref } from '@/data/site';
 
 const trust = [
   { ic: 'award' as const, t: `Since ${BIZ.founded}`, s: 'family-run' },
@@ -10,7 +10,22 @@ const trust = [
 ];
 ---
 
-<section id="top" class="relative overflow-hidden bg-gradient-to-b from-navy-800 to-navy-900 text-white">
+<section id="top" class="relative overflow-hidden bg-navy-900 text-white">
+  <!-- full-bleed background photo (technician + service van), darkened for legibility -->
+  <div class="pointer-events-none absolute inset-0">
+    <img
+      src={HERO_BG.src}
+      alt={HERO_BG.alt}
+      class="h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+    />
+    <!-- navy overlays: lighter overall so the photo reads, with extra weight
+         on the text (left) side for legibility -->
+    <div class="absolute inset-0 bg-navy-950/45"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/55 to-navy-950/15"></div>
+  </div>
+
   <!-- soft glow (matches prototype) -->
   <div
     class="pointer-events-none absolute -right-[10%] -top-[30%] h-[700px] w-[700px] rounded-full"
@@ -58,9 +73,9 @@ const trust = [
     <!-- Hero media -->
     <div class="relative">
       <Image
-        src={JOBSITE_PHOTO.src}
-        placeholder={JOBSITE_PHOTO.placeholder}
-        alt={JOBSITE_PHOTO.alt}
+        src={HERO_CARD.src}
+        placeholder={HERO_CARD.placeholder}
+        alt={HERO_CARD.alt}
         loading="eager"
         width={560}
         height={460}
