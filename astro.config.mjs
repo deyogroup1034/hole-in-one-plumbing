@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
@@ -28,7 +29,9 @@ export default defineConfig({
     platformProxy: { enabled: true },
   }),
 
-  integrations: [react()],
+  // sitemap emits /sitemap-index.xml from `site` on every build; a
+  // public/_redirects rule aliases the conventional /sitemap.xml to it.
+  integrations: [react(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()],

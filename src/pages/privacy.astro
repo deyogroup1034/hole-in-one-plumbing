@@ -1,0 +1,82 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import PageHero from '@/components/PageHero.astro';
+import { BIZ } from '@/data/site';
+
+const title = 'Privacy Policy | Hole in One Plumbing';
+const description =
+  'How Hole in One Plumbing collects, uses, and protects the information you share with us — and how to reach us about it.';
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Privacy Policy"
+      title="Your information, handled honestly"
+      subhead="The same way we run the business: we collect only what we need to serve you, and we tell you exactly what we do with it."
+    />
+
+    <section class="py-20 lg:py-24">
+      <div class="wrap max-w-3xl space-y-10 text-[17px] leading-relaxed text-slate-strong">
+        <div>
+          <h2 class="mb-3 text-[24px] font-extrabold text-ink">What we collect</h2>
+          <p>
+            When you submit our service request form, we collect the information you provide: your
+            name, phone number, email address (optional), the service you need, and any message you
+            include describing the problem. If you call or email us directly, we keep the contact
+            details and job information you share so we can follow up.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-[24px] font-extrabold text-ink">How we use it</h2>
+          <p>
+            We use your information for one purpose: to respond to your request, schedule your
+            appointment, and perform the plumbing work you asked for. We do not sell, rent, or share
+            your information with third parties for marketing.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-[24px] font-extrabold text-ink">Cookies &amp; analytics</h2>
+          <p>
+            This site does not use advertising cookies or cross-site trackers. We may use
+            privacy-friendly, aggregate analytics (such as Cloudflare Web Analytics) to understand
+            overall site traffic — it does not use cookies or collect personal information.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-[24px] font-extrabold text-ink">How long we keep it</h2>
+          <p>
+            We keep service-request and job records only as long as needed to serve you and to meet
+            our normal business and legal record-keeping obligations.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-[24px] font-extrabold text-ink">Your choices</h2>
+          <p>
+            You can ask us at any time what information we have about you, ask us to correct it, or
+            ask us to delete it. Email
+            <a href={`mailto:${BIZ.email}`} class="font-semibold text-navy-800 underline">{BIZ.email}</a>
+            or call {BIZ.phones[0]} and we'll take care of it.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="mb-3 text-[24px] font-extrabold text-ink">Questions</h2>
+          <p>
+            This policy covers the {BIZ.legalName} website. If anything here is unclear, contact us
+            at <a href={`mailto:${BIZ.email}`} class="font-semibold text-navy-800 underline">{BIZ.email}</a> —
+            a real person will answer.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

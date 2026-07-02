@@ -212,6 +212,11 @@ export const HERO_BG: PhotoSlot = {
   placeholder: 'Photo · technician and service truck',
   alt: 'Hole in One Plumbing technician in front of the service truck',
 };
+/* Social-share (og:image) photo — reuses the hero background at the standard
+   1200×630 OG crop. Licensed Unsplash stock; PRE-LAUNCH: swap for a real
+   branded share image (e.g. public/assets/og-image.jpg, logo over a job photo). */
+export const OG_IMAGE = 'https://images.unsplash.com/photo-1663181191222-a20536e7419c?auto=format&fit=crop&w=1200&h=630&q=80';
+
 export const HERO_CARD: PhotoSlot = {
   src: 'https://images.unsplash.com/photo-1676210133055-eab6ef033ce3?auto=format&fit=crop&w=1100&q=80',
   placeholder: 'Photo · plumber testing pipes',
