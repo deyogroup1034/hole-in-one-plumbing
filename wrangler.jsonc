@@ -1,7 +1,8 @@
 {
   // Cloudflare Pages configuration. Deploy with `npm run deploy`
   // (astro build -> wrangler pages deploy ./dist).
-  "name": "hole-in-one-plumbing",
+  // Must match the Cloudflare Pages project name (hole-in-one.pages.dev).
+  "name": "hole-in-one",
   "compatibility_date": "2025-11-01",
   // Required by @astrojs/cloudflare for the on-demand (Pages Function) routes.
   "compatibility_flags": ["nodejs_compat"],
