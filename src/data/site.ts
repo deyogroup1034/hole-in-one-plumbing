@@ -199,9 +199,9 @@ export interface PhotoSlot {
    public/assets/hio_hero_clean.jpg and point src there) — every placement
    swaps at once. */
 export const JOBSITE_PHOTO: PhotoSlot = {
-  src: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1100&q=80',
-  placeholder: 'Photo · plumber on the job',
-  alt: 'Hole in One Plumbing technician on a foundation plumbing job',
+  src: 'https://images.unsplash.com/photo-1746095792963-74106bae8658?auto=format&fit=crop&w=1100&q=80',
+  placeholder: 'Photo · crew repairing a pipe',
+  alt: 'Plumbing crew repairing an underground pipe on the job',
 };
 
 /* Homepage hero imagery — a full-bleed background (technician + service van,
@@ -218,17 +218,17 @@ export const HERO_BG: PhotoSlot = {
 export const OG_IMAGE = 'https://images.unsplash.com/photo-1663181191222-a20536e7419c?auto=format&fit=crop&w=1200&h=630&q=80';
 
 export const HERO_CARD: PhotoSlot = {
-  src: 'https://images.unsplash.com/photo-1676210133055-eab6ef033ce3?auto=format&fit=crop&w=1100&q=80',
-  placeholder: 'Photo · plumber testing pipes',
-  alt: 'Plumber testing and working on pipework on the job',
+  src: 'https://images.unsplash.com/photo-1598561760412-747b66d2fe45?auto=format&fit=crop&w=1100&q=80',
+  placeholder: 'Photo · pipe inspection camera',
+  alt: 'Technician inspecting a pipe with a camera inspection system, reviewing results on the monitor',
 };
 
 /* Licensed Unsplash stock placeholders. PRE-LAUNCH: replace with real client photos. */
 export const PHOTOS: Record<'why' | 'area', PhotoSlot> = {
   why: {
-    src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1100&q=80',
-    placeholder: 'Photo · team & service van',
-    alt: 'Hole in One Plumbing team and service van',
+    src: 'https://images.unsplash.com/photo-1676210134188-4c05dd172f89?auto=format&fit=crop&w=1100&q=80',
+    placeholder: 'Photo · technician on the job',
+    alt: 'Plumbing technician working on under-sink pipework',
   },
   area: {
     src: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1100&q=80',
