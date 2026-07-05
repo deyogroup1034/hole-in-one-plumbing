@@ -218,17 +218,18 @@ export const HERO_BG: PhotoSlot = {
 export const OG_IMAGE = 'https://images.unsplash.com/photo-1663181191222-a20536e7419c?auto=format&fit=crop&w=1200&h=630&q=80';
 
 export const HERO_CARD: PhotoSlot = {
-  src: 'https://images.unsplash.com/photo-1598561760412-747b66d2fe45?auto=format&fit=crop&w=1100&q=80',
-  placeholder: 'Photo · pipe inspection camera',
-  alt: 'Technician inspecting a pipe with a camera inspection system, reviewing results on the monitor',
+  src: 'https://images.unsplash.com/photo-1749532125405-70950966b0e5?auto=format&fit=crop&w=1100&q=80',
+  placeholder: 'Photo · plumber on the job',
+  alt: 'Plumber working on exposed water lines during a residential plumbing job',
 };
 
-/* Licensed Unsplash stock placeholders. PRE-LAUNCH: replace with real client photos. */
+/* Licensed stock placeholders (Unsplash + Pexels licenses — both free for
+   commercial use, no attribution required). PRE-LAUNCH: replace with real client photos. */
 export const PHOTOS: Record<'why' | 'area', PhotoSlot> = {
   why: {
-    src: 'https://images.unsplash.com/photo-1676210134188-4c05dd172f89?auto=format&fit=crop&w=1100&q=80',
-    placeholder: 'Photo · technician on the job',
-    alt: 'Plumbing technician working on under-sink pipework',
+    src: 'https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg?auto=compress&cs=tinysrgb&w=1100',
+    placeholder: 'Photo · water heater service',
+    alt: 'Technician servicing a water heater, checking the controls and gauges',
   },
   area: {
     src: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1100&q=80',
