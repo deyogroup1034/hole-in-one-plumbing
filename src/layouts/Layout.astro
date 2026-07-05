@@ -16,6 +16,8 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+// og:image must be an absolute URL.
+const ogImage = new URL(OG_IMAGE, Astro.site ?? Astro.url).href;
 
 // Global LocalBusiness (Plumber) schema — present on every page.
 // Service-area business: no street address (PO Box only), so we publish
@@ -62,7 +64,7 @@ const schemas = [localBusinessSchema, ...pageSchemas];
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={BIZ.name} />
-    <meta property="og:image" content={OG_IMAGE} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 

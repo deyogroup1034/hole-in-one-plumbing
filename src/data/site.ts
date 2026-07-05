@@ -212,24 +212,25 @@ export const HERO_BG: PhotoSlot = {
   placeholder: 'Photo · technician and service truck',
   alt: 'Hole in One Plumbing technician in front of the service truck',
 };
-/* Social-share (og:image) photo — reuses the hero background at the standard
-   1200×630 OG crop. Licensed Unsplash stock; PRE-LAUNCH: swap for a real
-   branded share image (e.g. public/assets/og-image.jpg, logo over a job photo). */
-export const OG_IMAGE = 'https://images.unsplash.com/photo-1663181191222-a20536e7419c?auto=format&fit=crop&w=1200&h=630&q=80';
+/* Social-share (og:image) photo — 1200×630 crop of the hero camera-inspection
+   photo (client-licensed Adobe Stock). Layout.astro resolves it against `site`. */
+export const OG_IMAGE = '/assets/og-image.jpg';
 
+/* Client-licensed Adobe Stock (AdobeStock_1203145106), resized to 1200w. */
 export const HERO_CARD: PhotoSlot = {
-  src: 'https://images.unsplash.com/photo-1749532125405-70950966b0e5?auto=format&fit=crop&w=1100&q=80',
-  placeholder: 'Photo · plumber on the job',
-  alt: 'Plumber working on exposed water lines during a residential plumbing job',
+  src: '/assets/hero-camera-inspection.jpg',
+  placeholder: 'Photo · pipe camera inspection',
+  alt: 'Technician running a pipe inspection camera into a sewer cleanout, watching the line on the monitor',
 };
 
 /* Licensed stock placeholders (Unsplash + Pexels licenses — both free for
    commercial use, no attribution required). PRE-LAUNCH: replace with real client photos. */
 export const PHOTOS: Record<'why' | 'area', PhotoSlot> = {
+  // Client-licensed Adobe Stock (AdobeStock_311970855), resized to 1200w.
   why: {
-    src: 'https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg?auto=compress&cs=tinysrgb&w=1100',
-    placeholder: 'Photo · water heater service',
-    alt: 'Technician servicing a water heater, checking the controls and gauges',
+    src: '/assets/water-heater.jpg',
+    placeholder: 'Photo · water heater',
+    alt: 'Copper water lines and flue on a residential water heater installation',
   },
   area: {
     src: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1100&q=80',
