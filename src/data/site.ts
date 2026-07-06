@@ -11,11 +11,12 @@ export const BIZ = {
   tagline: 'Foundation plumbing specialists for the DFW Metroplex',
   // Service-area business based in Wylie, TX 75098 — no public street address (PO Box only).
   homeBase: 'Wylie, TX',
-  // Primary line is the public number; secondary is optional to display.
-  phones: ['(972) 429-2223', '(469) 855-9041'],
+  // Primary line is the public number; secondary is the office alternate line.
+  phones: ['(972) 429-2223', '(972) 475-5458'],
   email: 'info@holeinoneplumbing.com',
   // TX law requires displaying the RMP license number on every page.
-  license: 'Master Plumber #M37741',
+  // Client-confirmed format: "RMP #37741" (Responsible Master Plumber).
+  license: 'RMP #37741',
   founded: 2006,
   experience: 'nearly two decades',
   hours: 'Mon–Fri 8a–5p',
@@ -64,7 +65,7 @@ export const SERVICES: Service[] = [
     key: 'hydro-pre',
     title: 'Hydrostatic Pre-Test',
     blurb:
-      'Buying a home or suspect a slab leak? We pressure-test your under-slab drain system to confirm whether the sewer lines hold water — before you sign or spend a dollar on repairs.',
+      'Buying a home or suspect a slab leak? We run a water-level test on your under-slab drain system to confirm whether the sewer lines hold water — before you sign or spend a dollar on repairs.',
     icon: 'gauge',
   },
   {
@@ -85,7 +86,7 @@ export const SERVICES: Service[] = [
     key: 'foundation-repair',
     title: 'Under-Slab Repair',
     blurb:
-      'When a line fails beneath the slab, we tunnel or re-route to fix it on solid ground and restore the system — coordinated cleanly with your foundation crew.',
+      'BIG or small, we repair them all. When a line fails beneath the slab, we tunnel or re-route to fix it on solid ground and restore the system.',
     icon: 'foundation',
   },
   {
@@ -96,6 +97,13 @@ export const SERVICES: Service[] = [
     icon: 'drain',
   },
   {
+    key: 'hydro-jetting',
+    title: 'Hydro Jetting',
+    blurb:
+      'High-pressure cleaning that scours drain and sewer lines — not just a hole through the clog.',
+    icon: 'drain',
+  },
+  {
     key: 'water-heater',
     title: 'Water Heaters',
     blurb:
@@ -103,8 +111,8 @@ export const SERVICES: Service[] = [
     icon: 'flame',
   },
 ];
-// Note: Gas Lines & Backflow are full blocks on /services but are intentionally
-// NOT featured on the homepage grid (homepage keeps the 6 foundation-first cards).
+// Note: Gas Lines & Miscellaneous are full blocks on /services but are intentionally
+// NOT featured on the homepage grid (homepage keeps the foundation-first cards).
 
 /* ⚠️ PLACEHOLDER reviews — invented for layout only. DO NOT LAUNCH AS-IS.
    Publishing fabricated testimonials on a live commercial site is deceptive
@@ -149,7 +157,7 @@ export const TESTIMONIALS: Story[] = [
   },
   {
     quote:
-      'Needed a pressure test before foundation work. They were early both times, clearly knew their stuff, and walked me through the whole process.',
+      'Needed a hydrostatic test before foundation work. They were early both times, clearly knew their stuff, and walked me through the whole process.',
     name: 'Stephanie R.',
     city: 'Wylie, TX',
     service: 'Hydrostatic Pre-Test',

@@ -8,6 +8,7 @@ import Image from '@/components/Image.astro';
 import Icon from '@/components/Icon.astro';
 import { JOBSITE_PHOTO } from '@/data/site';
 import type { IconName } from '@/data/site';
+import hydrostaticIllustration from '@/assets/hydrostatic-testing-illustration.jpg';
 
 const title = 'Plumbing & Foundation Services | Hole in One Plumbing DFW';
 const description =
@@ -16,8 +17,8 @@ const description =
 // Foundation-testing workflow (signature explainer)
 const flow = [
   {
-    t: 'Hydrostatic pre-test',
-    s: 'We isolate and fill the under-slab drain lines with water and watch the level. If it holds, the plumbing is sound and the foundation work can proceed. If it drops, there’s a leak to find first.',
+    t: 'Hydrostatic test',
+    s: 'We fill the under-slab drain lines with water and watch the level. If it holds, the plumbing is sound and the foundation work can proceed. If it drops, there’s a leak to find first.',
   },
   {
     t: 'Isolation',
@@ -45,7 +46,7 @@ const blocks: ServiceBlock[] = [
     id: 'hydro-pre',
     name: 'Hydrostatic Pre-Test',
     icon: 'gauge',
-    whatItIs: 'A pressure/level test of your under-slab drains before foundation work.',
+    whatItIs: 'A water-level test of your under-slab drains before foundation work.',
     whenYouNeedIt:
       'Needed when a foundation company requires proof the plumbing is sound before they lift.',
   },
@@ -79,6 +80,15 @@ const blocks: ServiceBlock[] = [
     whenYouNeedIt: 'When a drain is slow, stopped, or backing up — and you want the real cause found.',
   },
   {
+    id: 'hydro-jetting',
+    name: 'Hydro Jetting',
+    icon: 'drain',
+    whatItIs:
+      'High-pressure water jetting that scours the inside of your drain and sewer lines clean, not just poking a hole through the clog.',
+    whenYouNeedIt:
+      'When a line keeps backing up after snaking, when years of grease or roots have built up, or as maintenance before a slow drain becomes an emergency. It’s the difference between clearing a clog and actually cleaning the pipe.',
+  },
+  {
     id: 'water-heater',
     name: 'Water Heaters',
     icon: 'flame',
@@ -95,13 +105,13 @@ const blocks: ServiceBlock[] = [
       'You need a licensed plumber for this whenever you’re adding or moving a gas appliance, you smell gas, or a line fails inspection. Gas work done wrong is dangerous, so we pressure-test every line we touch and leave it safe and inspection-ready.',
   },
   {
-    id: 'backflow',
-    name: 'Backflow',
-    icon: 'shield',
+    id: 'misc',
+    name: 'Miscellaneous Plumbing',
+    icon: 'check',
     whatItIs:
-      'Testing, repair, and replacement of the backflow prevention devices that stop contaminated water from flowing back into your clean supply.',
+      'Faucets, toilets, garbage disposals, hose bibs, leak repairs, fixture swaps — the everyday list that keeps a house running.',
     whenYouNeedIt:
-      'Many North Texas cities require an annual backflow test on irrigation systems and certain properties. We test, certify, and repair or replace failed assemblies so your water stays safe and you stay compliant.',
+      'If water runs through it, we work on it. No job is too small to do right.',
   },
   {
     id: 'emergency',
@@ -129,7 +139,7 @@ const serviceSchemas = blocks.map((b) => ({
   <main>
     <PageHero
       eyebrow="Our Services"
-      title="Foundation plumbing specialists — and your everyday plumber, too"
+      title="Foundation plumbing specialists — and your everyday plumbing needs too"
       subhead="From the diagnostic testing that foundation repairs depend on to the water heater that quit this morning, we handle it."
     />
 
@@ -163,6 +173,23 @@ const serviceSchemas = blocks.map((b) => ({
             ))
           }
         </ol>
+      </div>
+
+      <!-- Client-provided hydrostatic testing illustration — full column width,
+           below the steps (too dense to read at half width). -->
+      <div class="wrap mt-12">
+        <figure class="reveal">
+          <Image
+            src={hydrostaticIllustration}
+            alt="Illustration of how a hydrostatic test works: the system is sealed with a test ball at the outdoor cleanout, floor-level drains are accessed, and the lines are filled with water and monitored."
+            sizes="(min-width: 1200px) 1100px, 100vw"
+            class="h-auto w-full rounded-[18px] border border-line shadow-card"
+          />
+          <figcaption class="mt-3 text-[14px] leading-relaxed text-slate-faint">
+            The system is sealed at the outdoor two-way cleanout, filled with water, and monitored —
+            no high pressure involved. A two-way outdoor cleanout is required to perform the test.
+          </figcaption>
+        </figure>
       </div>
     </section>
 

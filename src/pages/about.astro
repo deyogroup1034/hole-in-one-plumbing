@@ -8,7 +8,7 @@ import Icon from '@/components/Icon.astro';
 import { BIZ, AREAS } from '@/data/site';
 import type { IconName } from '@/data/site';
 
-const title = 'About Hole in One Plumbing | Family-Run DFW Plumbers';
+const title = 'About Hole in One Plumbing | Family Owned & Operated DFW Plumbers';
 const description =
   'Family-owned plumbing company serving Dallas–Fort Worth, specializing in foundation plumbing, slab leaks, and honest, up-front pricing.';
 
@@ -26,11 +26,11 @@ const differentiators: { icon: IconName; t: string; s: string }[] = [
   {
     icon: 'shield',
     t: 'Licensed & insured.',
-    s: `TX Master Plumber License ${BIZ.license.replace('Master Plumber ', '')}. Fully insured for your protection.`,
+    s: `${BIZ.license}. Fully insured for your protection.`,
   },
   {
     icon: 'pin',
-    t: 'Family-run & local.',
+    t: 'Family owned & operated, and local.',
     s: 'You deal with people who live and work right here in North Texas, not a call center.',
   },
 ];
@@ -41,7 +41,7 @@ const differentiators: { icon: IconName; t: string; s: string }[] = [
   <main>
     <PageHero
       eyebrow="About Hole in One Plumbing"
-      title="Family-run plumbers who treat your home like our own"
+      title="Family owned & operated plumbers who treat your home like our own"
       subhead={`For ${BIZ.experience}, North Texas homeowners have trusted us for the foundation and plumbing work other companies pass on.`}
     />
 

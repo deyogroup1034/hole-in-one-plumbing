@@ -17,7 +17,19 @@ const year = new Date().getFullYear();
         Honest diagnostics, documented results, done right the first time.
       </p>
       <div class="mt-4 inline-flex items-center gap-2 font-display text-[13.5px] font-bold text-accent-400">
-        <Icon name="award" size={18} /> TX {BIZ.license}
+        <Icon name="award" size={18} /> {BIZ.license}
+      </div>
+      <!-- Trust logos. TODO(pending): add the official BBB accredited-business
+           seal next to the Good Contractors badge when the client delivers it. -->
+      <div class="mt-4 inline-flex items-center rounded-xl bg-white px-3.5 py-2.5">
+        <img
+          src="/assets/good-contractors.png"
+          alt="The Good Contractors List member"
+          width={106}
+          height={54}
+          loading="lazy"
+          class="h-[54px] w-auto"
+        />
       </div>
     </div>
 
