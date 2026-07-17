@@ -246,24 +246,22 @@ export const JOBSITE_PHOTO: PhotoSlot = {
   alt: 'Hole in One Plumbing technician running test lines into an outdoor sewer cleanout',
 };
 
-/* Homepage hero imagery — a full-bleed background (technician + service van,
-   shown darkened behind the hero) and the foreground photo card.
-   Licensed Unsplash stock; PRE-LAUNCH: swap both for the client's real photos. */
+/* Homepage hero imagery — a full-bleed background (branded service truck,
+   shown darkened behind the hero) and the foreground photo card. */
 export const HERO_BG: PhotoSlot = {
-  src: 'https://images.unsplash.com/photo-1663181191222-a20536e7419c?auto=format&fit=crop&w=1920&q=80',
-  placeholder: 'Photo · technician and service truck',
-  alt: 'Hole in One Plumbing technician in front of the service truck',
+  src: '/assets/hero-truck.jpg',
+  placeholder: 'Photo · Hole in One service truck',
+  alt: 'Hole in One Plumbing service truck with Texas-flag branding on the utility bed',
 };
 /* Social-share (og:image) photo — 1200×630 crop of the hero camera-inspection
    photo (client-licensed Adobe Stock). Layout.astro resolves it against `site`. */
 export const OG_IMAGE = '/assets/og-image.jpg';
 
-/* Real client photo: branded service truck on a navy backdrop (matches the
-   hero background), resized to 1200w. */
+/* Client-licensed Adobe Stock (AdobeStock_1203145106), resized to 1200w. */
 export const HERO_CARD: PhotoSlot = {
-  src: '/assets/hero-truck.jpg',
-  placeholder: 'Photo · Hole in One service truck',
-  alt: 'Hole in One Plumbing service truck with Texas-flag branding, phone number, and website on the utility bed',
+  src: '/assets/hero-camera-inspection.jpg',
+  placeholder: 'Photo · pipe camera inspection',
+  alt: 'Technician running a pipe inspection camera into a sewer cleanout, watching the line on the monitor',
 };
 
 /* Licensed stock placeholders (Unsplash + Pexels licenses — both free for
