@@ -26,7 +26,7 @@ export function FeaturedStories() {
     <div className="grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
       {/* Main story */}
       <article className="overflow-hidden rounded-[20px] border border-line border-l-[6px] border-l-accent-500 bg-white shadow-card">
-        <Photo photo={story.photo} className="h-[240px] w-full object-cover sm:h-[300px]" />
+        <Photo photo={story.photo} className="h-[240px] w-full object-cover object-[center_30%] sm:h-[300px]" />
         <div className="p-8 lg:p-9">
           <div className="font-display text-[12.5px] font-bold uppercase tracking-[0.08em] text-accent-600">
             {story.service}

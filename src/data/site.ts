@@ -114,11 +114,8 @@ export const SERVICES: Service[] = [
 // Note: Gas Lines & Miscellaneous are full blocks on /services but are intentionally
 // NOT featured on the homepage grid (homepage keeps the foundation-first cards).
 
-/* ⚠️ PLACEHOLDER reviews — invented for layout only. DO NOT LAUNCH AS-IS.
-   Publishing fabricated testimonials on a live commercial site is deceptive
-   under FTC rules. PRE-LAUNCH: replace all of these with real, verifiable
-   customer reviews (collect fresh Google reviews, or migrate genuine
-   Angi/Yelp/BuildZoom reviews with proper attribution + consent). */
+/* Real customer reviews (Google), provided by the client 2026-07. Lightly
+   edited for length/typos only — wording is the customer's own. */
 export interface Story {
   quote: string;
   name: string;
@@ -129,38 +126,73 @@ export interface Story {
 export const TESTIMONIALS: Story[] = [
   {
     quote:
-      'Our foundation crew sent Hole in One to re-check the plumbing after the lift. On time, thorough, and they explained every step. No surprises.',
-    name: 'Karen M.',
-    city: 'Plano, TX',
-    service: 'Foundation Post-Test',
-  },
-  {
-    quote:
-      'Another company told me I needed a major repair. Hole in One found the real problem in under an hour and charged me a fraction of the price. Honest people.',
-    name: 'David H.',
-    city: 'Rockwall, TX',
-    service: 'Slab Leak / Diagnosis',
-  },
-  {
-    quote:
-      'They replaced our old cast-iron lines with PVC by tunneling instead of tearing up our floors. Clean, respectful crew — they treated our home like their own.',
-    name: 'The Nguyen Family',
-    city: 'Sachse, TX',
-    service: 'Cast Iron to PVC',
-  },
-  {
-    quote:
-      'Quick tankless install, sized right for our house, and the final price matched the quote exactly. Couldn’t ask for more.',
-    name: 'Brian T.',
-    city: 'Murphy, TX',
-    service: 'Tankless Water Heater',
-  },
-  {
-    quote:
-      'Needed a hydrostatic test before foundation work. They were early both times, clearly knew their stuff, and walked me through the whole process.',
-    name: 'Stephanie R.',
+      'I’m not one to leave reviews unless the service is stellar. This company surpassed my expectations and made a stressful plumbing situation better with their thorough communication, competence, and fair pricing. Another company quoted three times as much for the same issues. Oscar and Ashle at Hole in One have renewed my faith that there is still trustworthy, quality care out there!',
+    name: 'Holly Hartman',
     city: 'Wylie, TX',
-    service: 'Hydrostatic Pre-Test',
+    service: 'Leak Detection & Pipe Repair',
+  },
+  {
+    quote:
+      'Hole in One Plumbing is an excellent company. Oscar, Erica and their team are caring, responsive and as genuine as it gets. Max came out to my house following a water leak and was able to quickly diagnose and remedy the problem. Their customer service and attention to detail is top notch. Highly recommend them!',
+    name: 'Andrew Ortiz',
+    city: 'Fate, TX',
+    service: 'Leak Repair',
+  },
+  {
+    quote:
+      'Big company communication and skill, with local company attitude and pricing. Have used these guys across three different houses now for very different types of work and they’ve done a great job each time.',
+    name: 'Chris Ray',
+    city: 'Dallas, TX',
+    service: 'Repeat Customer',
+  },
+  {
+    quote:
+      'A previous plumber told us our cast iron pipes were leaking and needed to be replaced. Hole in One saved us a ton and proved the previous tests were wrong. Super helpful, communicated clearly. Would recommend to anyone.',
+    name: 'Dave Patterson',
+    city: 'Rockwall, TX',
+    service: 'Second Opinion / Testing',
+  },
+  {
+    quote:
+      'Hole in One Plumbing has been honest and reliable. We have used their service for many years — most recently for our kitchen faucet and outdoor faucet repair. Very reasonable pricing and professional, friendly service. They explain everything. Would highly recommend!',
+    name: 'Judy',
+    city: 'Richardson, TX',
+    service: 'Faucet Repair',
+  },
+  {
+    quote:
+      'I called Hole in One for a hydrostatic test, leak detection, and repair — and I couldn’t be more impressed. Every team that came out was professional and courteous, and the owner himself showed up to assist with the leak detection. They located all the leaks and completed the repairs efficiently. I’ve never been this satisfied with a plumbing company.',
+    name: 'Zach F.',
+    city: 'Allen, TX',
+    service: 'Hydrostatic Test & Leak Detection',
+  },
+  {
+    quote:
+      'What a wonderful experience. We needed complex plumbing done on our sewer system. The plumber was excellent and really knew what he was doing — pleasant, and kept me posted. The work crew was amazing: when they finished, it looked like no one had even been outside digging.',
+    name: 'Jim Hanophy',
+    city: 'Hurst, TX',
+    service: 'Sewer Repair',
+  },
+  {
+    quote:
+      'They fixed two leaks in our sewer lines, replaced a hose bibb, and installed flood stops on our water heaters. From start to finish, their entire team was friendly, helpful, and professional. Communication was excellent — they kept us informed every step of the way.',
+    name: 'Brad Hobson',
+    city: 'Dallas, TX',
+    service: 'Sewer & Fixture Repairs',
+  },
+  {
+    quote:
+      'We have been long-time customers, so when we discovered a sewer backup on New Year’s Eve, we did not ask for — nor expect — same-day service. But that’s exactly what they did, and they came back New Year’s Day to complete the job. We appreciate the excellent work that is always performed by Hole in One and their dedication to customers.',
+    name: 'Bruce Brazzell',
+    city: 'Rowlett, TX',
+    service: 'Emergency Sewer Service',
+  },
+  {
+    quote:
+      'We have used several plumbing contractors for slab leak and sewer line replacements, but Hole in One was by far the most up-front, personable and professional plumbing company we have dealt with. Oscar managed the job like a champ, and Ashle in the office was incredible with follow-up and customer service.',
+    name: 'Brian Shuey',
+    city: 'Realtor · DFW',
+    service: 'Slab Leak & Sewer Line',
   },
 ];
 
@@ -200,16 +232,13 @@ export interface PhotoSlot {
   alt: string;
 }
 
-/* Shared job-site photo, reused on the homepage hero, the /services
-   foundation section, and the /customer-stories featured story.
-   Licensed Unsplash stock for now (Unsplash License — free commercial use).
-   PRE-LAUNCH: swap `src` for a real client photo (e.g. drop the file at
-   public/assets/hio_hero_clean.jpg and point src there) — every placement
-   swaps at once. */
+/* Shared job-site photo, reused on the /services foundation section and the
+   /customer-stories featured story. Real client photo: technician running a
+   cleanout test at an outdoor sewer cleanout. */
 export const JOBSITE_PHOTO: PhotoSlot = {
-  src: 'https://images.unsplash.com/photo-1746095792963-74106bae8658?auto=format&fit=crop&w=1100&q=80',
-  placeholder: 'Photo · crew repairing a pipe',
-  alt: 'Plumbing crew repairing an underground pipe on the job',
+  src: '/assets/cleanout-test.jpg',
+  placeholder: 'Photo · sewer cleanout test',
+  alt: 'Hole in One Plumbing technician running test lines into an outdoor sewer cleanout',
 };
 
 /* Homepage hero imagery — a full-bleed background (technician + service van,
@@ -224,11 +253,12 @@ export const HERO_BG: PhotoSlot = {
    photo (client-licensed Adobe Stock). Layout.astro resolves it against `site`. */
 export const OG_IMAGE = '/assets/og-image.jpg';
 
-/* Client-licensed Adobe Stock (AdobeStock_1203145106), resized to 1200w. */
+/* Real client photo: branded service truck on a navy backdrop (matches the
+   hero background), resized to 1200w. */
 export const HERO_CARD: PhotoSlot = {
-  src: '/assets/hero-camera-inspection.jpg',
-  placeholder: 'Photo · pipe camera inspection',
-  alt: 'Technician running a pipe inspection camera into a sewer cleanout, watching the line on the monitor',
+  src: '/assets/hero-truck.jpg',
+  placeholder: 'Photo · Hole in One service truck',
+  alt: 'Hole in One Plumbing service truck with Texas-flag branding, phone number, and website on the utility bed',
 };
 
 /* Licensed stock placeholders (Unsplash + Pexels licenses — both free for
