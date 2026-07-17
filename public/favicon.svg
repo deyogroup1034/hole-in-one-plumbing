@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#081b33" />
-  <!-- amber water drop -->
-  <path d="M16 6s7 7.4 7 12a7 7 0 0 1-14 0c0-4.6 7-12 7-12z" fill="#f59e0b" />
-  <circle cx="16" cy="18" r="2.4" fill="#081b33" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<path d="M28,6 L45,6 L45,34 L63,34 L66,38 L70,36 L74,41 L79,39 L83,45 L84,58 L76,62 L66,68 L58,76 L54,84 L52,95 L46,86 L41,77 L33,68 L24,61 L14,56 L6,53 L13,47 L28,47 Z" fill="#2E8E3A" stroke="#FFFFFF" stroke-width="2.2" stroke-linejoin="round"/>
+<line x1="52" y1="41" x2="52" y2="12" stroke="#22262C" stroke-width="3"/>
+<path d="M52,11 L79,17 L52,25 Z" fill="#C8102E"/>
+<ellipse cx="52" cy="41.5" rx="5" ry="2.5" fill="#14181C"/>
 </svg>
