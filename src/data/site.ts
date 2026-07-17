@@ -238,12 +238,12 @@ export interface PhotoSlot {
 }
 
 /* Shared job-site photo, reused on the /services foundation section and the
-   /customer-stories featured story. Real client photo: technician running a
-   cleanout test at an outdoor sewer cleanout. */
+   /customer-stories featured story. Client-licensed Adobe Stock
+   (AdobeStock_1203145106), resized to 1200w. */
 export const JOBSITE_PHOTO: PhotoSlot = {
-  src: '/assets/cleanout-test.jpg',
-  placeholder: 'Photo · sewer cleanout test',
-  alt: 'Hole in One Plumbing technician running test lines into an outdoor sewer cleanout',
+  src: '/assets/hero-camera-inspection.jpg',
+  placeholder: 'Photo · pipe camera inspection',
+  alt: 'Technician running a pipe inspection camera into a sewer cleanout, watching the line on the monitor',
 };
 
 /* Homepage hero imagery — a full-bleed background (branded service truck,
@@ -257,11 +257,12 @@ export const HERO_BG: PhotoSlot = {
    photo (client-licensed Adobe Stock). Layout.astro resolves it against `site`. */
 export const OG_IMAGE = '/assets/og-image.jpg';
 
-/* Client-licensed Adobe Stock (AdobeStock_1203145106), resized to 1200w. */
+/* Real client photo: technician running a cleanout test at an outdoor
+   sewer cleanout. */
 export const HERO_CARD: PhotoSlot = {
-  src: '/assets/hero-camera-inspection.jpg',
-  placeholder: 'Photo · pipe camera inspection',
-  alt: 'Technician running a pipe inspection camera into a sewer cleanout, watching the line on the monitor',
+  src: '/assets/cleanout-test.jpg',
+  placeholder: 'Photo · sewer cleanout test',
+  alt: 'Hole in One Plumbing technician running test lines into an outdoor sewer cleanout',
 };
 
 /* Licensed stock placeholders (Unsplash + Pexels licenses — both free for
