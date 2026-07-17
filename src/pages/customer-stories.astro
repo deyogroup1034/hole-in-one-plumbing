@@ -6,7 +6,7 @@ import PageHero from '@/components/PageHero.astro';
 import CtaBand from '@/components/CtaBand.astro';
 import Icon from '@/components/Icon.astro';
 import { FeaturedStories } from '@/components/FeaturedStories';
-import { BIZ, TESTIMONIALS, TRUST_BADGES } from '@/data/site';
+import { BIZ, GOOGLE_REVIEW_URL, TESTIMONIALS, TRUST_BADGES } from '@/data/site';
 
 const title = 'Customer Stories & Reviews | Hole in One Plumbing';
 const description =
@@ -107,8 +107,12 @@ const STARS = 5;
             <h2 class="text-[22px] font-bold">Worked with us? We’d love your feedback.</h2>
             <p class="mt-1 text-[15.5px] text-slate-soft">A quick review helps other North Texas homeowners find honest help.</p>
           </div>
-          <!-- PRE-LAUNCH: set the real Google review link as the href below. -->
-          <a href="#" class="btn btn-accent flex-shrink-0">
+          <a
+            href={GOOGLE_REVIEW_URL}
+            target="_blank"
+            rel="noopener"
+            class="btn btn-accent flex-shrink-0"
+          >
             <Icon name="star" size={18} /> Leave a review
           </a>
         </div>

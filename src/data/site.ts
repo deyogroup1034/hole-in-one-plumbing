@@ -196,6 +196,11 @@ export const TESTIMONIALS: Story[] = [
   },
 ];
 
+/* Google "write a review" link — opens the review dialog on the company's
+   Google Business listing (listing ID from the client's Maps URL). */
+export const GOOGLE_REVIEW_URL =
+  'https://www.google.com/search?q=hole+in+one+plumbing#lrd=0x864c0502ebb46c23:0x3dced2bf9022bebe,3';
+
 // Confirmed service area: greater DFW, "from Rockwall to Frisco, Carrollton to Anna."
 export const AREAS = [
   'Wylie',
