@@ -255,7 +255,7 @@ export const HERO_BG: PhotoSlot = {
 };
 /* Social-share (og:image) photo — 1200×630 crop of the hero camera-inspection
    photo (client-licensed Adobe Stock). Layout.astro resolves it against `site`. */
-export const OG_IMAGE = '/assets/og-image.jpg';
+export const OG_IMAGE = '/og-image.jpg';
 
 /* Real client photo: technician running a cleanout test at an outdoor
    sewer cleanout. */
