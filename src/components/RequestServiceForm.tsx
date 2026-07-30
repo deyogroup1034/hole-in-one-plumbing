@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Icon } from './icons';
+import { Turnstile, resetTurnstile, turnstileConfigured } from './Turnstile';
 import { BIZ, SERVICES } from '@/data/site';
 
 type FormState = {
@@ -20,6 +21,8 @@ export function RequestServiceForm() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const set =
     (key: keyof FormState) =>
@@ -42,15 +45,25 @@ export function RequestServiceForm() {
     if (Object.keys(er).length > 0) return;
 
     setStatus('sending');
+    setServerError(null);
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, turnstileToken }),
       });
-      if (!res.ok) throw new Error('Request failed');
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        if (data?.error) setServerError(data.error);
+        throw new Error('Request failed');
+      }
       setStatus('sent');
     } catch {
+      // A consumed/expired token can't be reused — reset for the retry.
+      if (turnstileConfigured()) {
+        setTurnstileToken(null);
+        resetTurnstile();
+      }
       setStatus('error');
     }
   };
@@ -147,10 +160,12 @@ export function RequestServiceForm() {
           />
         </Field>
 
+        <Turnstile onToken={setTurnstileToken} />
+
         {status === 'error' && (
           <p className="mb-3 text-[14px] font-semibold text-accent-700">
-            Something went wrong sending your request. Please call {BIZ.phones[0]} and we'll help
-            right away.
+            {serverError ??
+              `Something went wrong sending your request. Please call ${BIZ.phones[0]} and we'll help right away.`}
           </p>
         )}
 

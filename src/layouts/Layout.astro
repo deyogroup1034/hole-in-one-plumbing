@@ -22,6 +22,11 @@ const canonical = new URL(cleanPath, Astro.site ?? Astro.url).href;
 // og:image must be an absolute URL.
 const ogImage = new URL(OG_IMAGE, Astro.site ?? Astro.url).href;
 
+// Cloudflare Web Analytics (cookieless, fleet standard). The beacon only
+// renders once the site token from the CF dashboard is provided at build
+// time — until then the privacy policy's analytics statement stays accurate.
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
+
 // Global LocalBusiness (Plumber) schema — present on every page.
 // Service-area business: no street address (PO Box only), so we publish
 // areaServed instead of a postal address. PRE-LAUNCH: add `sameAs`
@@ -95,7 +100,15 @@ const schemas = [localBusinessSchema, ...pageSchemas];
   </head>
   <body>
     <slot />
-    <!-- PRE-LAUNCH: analytics. Enable Vercel Web Analytics in the project
-         dashboard, then add the tracking snippet (or @vercel/analytics) here. -->
+    {
+      cfBeaconToken && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cfBeaconToken })}
+        />
+      )
+    }
   </body>
 </html>
