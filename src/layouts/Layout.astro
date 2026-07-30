@@ -95,9 +95,7 @@ const schemas = [localBusinessSchema, ...pageSchemas];
   </head>
   <body>
     <slot />
-    <!-- PRE-LAUNCH: Cloudflare Web Analytics. Create the site in the CF
-         dashboard (Web Analytics), paste its token below, and uncomment.
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN"}'></script>
-    -->
+    <!-- PRE-LAUNCH: analytics. Enable Vercel Web Analytics in the project
+         dashboard, then add the tracking snippet (or @vercel/analytics) here. -->
   </body>
 </html>

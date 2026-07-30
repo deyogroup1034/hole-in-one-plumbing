@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-// On-demand: this route runs as a Cloudflare Pages Function rather than
+// On-demand: this route runs as a Vercel serverless function rather than
 // being prerendered. Everything else on the site stays static.
 export const prerender = false;
 
@@ -44,10 +44,9 @@ export const POST: APIRoute = async ({ request }) => {
     receivedAt: new Date().toISOString(),
   };
 
-  // PRE-LAUNCH: wire up real lead delivery here. Options on Cloudflare:
-  //   - Email via Resend (confirmed choice) / Cloudflare Email Routing
-  //   - Persist to D1 or KV, or forward to a CRM webhook
-  // Secrets/bindings are available on `locals.runtime.env` (Cloudflare).
+  // PRE-LAUNCH: wire up real lead delivery here — email via Resend
+  // (confirmed choice), or forward to a CRM webhook. Secrets come from
+  // Vercel env vars via `import.meta.env` / `process.env`.
   // For now we just log so the request can be verified end-to-end.
   console.log('New service request:', lead);
 

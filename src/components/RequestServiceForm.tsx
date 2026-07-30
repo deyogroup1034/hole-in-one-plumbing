@@ -15,7 +15,7 @@ type Errors = Partial<Record<keyof FormState, string>>;
 const EMPTY: FormState = { name: '', phone: '', email: '', service: '', message: '' };
 
 /* Reusable "Request Service" block. Hydrated island. Posts to the
-   /api/contact Pages Function (which runs on-demand on Cloudflare). */
+   /api/contact route (a Vercel serverless function, rendered on demand). */
 export function RequestServiceForm() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});

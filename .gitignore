@@ -5,9 +5,8 @@ dist/
 # dependencies
 node_modules/
 
-# cloudflare
-.wrangler/
-.dev.vars
+# vercel
+.vercel/
 
 # logs
 npm-debug.log*
@@ -15,8 +14,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # environment
-.env
-.env.production
+.env*
 
 # macOS
 .DS_Store
