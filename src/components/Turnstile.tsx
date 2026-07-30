@@ -85,7 +85,9 @@ export function Turnstile({ onToken }: { onToken: (token: string | null) => void
 
   return (
     <div className="mb-4">
-      <div ref={containerRef} />
+      {/* cf-turnstile is a marker only (fleet scanner + convention); api.js is
+          loaded with ?render=explicit, so no implicit auto-render happens. */}
+      <div ref={containerRef} className="cf-turnstile" />
       {failed && (
         <p className="mt-1.5 text-[13px] font-semibold text-accent-700">
           The security check couldn't load. Please refresh and try again.
