@@ -89,13 +89,23 @@ const schemas = [localBusinessSchema, ...pageSchemas];
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- Fonts (match the approved prototype) -->
+    <!-- Fonts (match the approved prototype). Loaded async (media swap trick)
+         so the Google Fonts CSS doesn't render-block first paint; display=swap
+         keeps text visible in the fallback font meanwhile. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'; this.onload=null;"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     {
       schemas.map((schema) => (

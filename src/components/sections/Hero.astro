@@ -13,12 +13,14 @@ const trust = [
 <section id="top" class="relative overflow-hidden bg-navy-900 text-white">
   <!-- full-bleed background photo (technician + service van), darkened for legibility -->
   <div class="pointer-events-none absolute inset-0">
-    <img
+    <Image
       src={HERO_BG.src}
       alt={HERO_BG.alt}
       class="h-full w-full object-cover"
       loading="eager"
-      decoding="async"
+      fetchpriority="high"
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
     />
     <!-- navy overlays: lighter overall so the photo reads, with extra weight
          on the text (left) side for legibility -->
@@ -79,6 +81,8 @@ const trust = [
         loading="eager"
         width={560}
         height={460}
+        widths={[560, 1120]}
+        sizes="(min-width: 1024px) 560px, 100vw"
         class="h-[460px] w-full rounded-[20px] object-cover object-[center_30%] shadow-lift"
       />
       <!-- floating badge -->

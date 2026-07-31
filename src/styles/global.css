@@ -40,7 +40,8 @@
   --color-slate-strong: #38485a;
   --color-slate-mid: #4f6072;
   --color-slate-soft: #647386;
-  --color-slate-faint: #8d9aab;
+  /* AA on white at small sizes (4.76:1) — was #8d9aab (2.85:1, Lighthouse fail) */
+  --color-slate-faint: #64748b;
 
   /* ---- Lines & surfaces ---- */
   --color-line: #e4eaf0;

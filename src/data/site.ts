@@ -4,6 +4,10 @@
    except where flagged PLACEHOLDER (reviews) or as a pre-launch task.
    ============================================================ */
 
+import type { ImageMetadata } from 'astro';
+import heroTruckImg from '@/assets/hero-truck.jpg';
+import cleanoutTestImg from '@/assets/cleanout-test.jpg';
+
 export const BIZ = {
   name: 'Hole in One Plumbing',
   legalName: 'Hole in One Plumbing, LLC',
@@ -231,8 +235,11 @@ export const NAV_LINKS: [label: string, href: string][] = [
    wrapper renders the <img>, no component changes needed.
    PRE-LAUNCH: add real licensed photos (set `src` on each slot). */
 export interface PhotoSlot {
-  /** Set this to a real image URL/path to render a photo. Leave undefined to show the placeholder box. */
-  src?: string;
+  /** Set this to a real image to render a photo. Leave undefined to show the
+      placeholder box. An imported image (ImageMetadata from src/assets) goes
+      through the astro:assets optimization pipeline; a string path/URL renders
+      a plain <img>. */
+  src?: string | ImageMetadata;
   placeholder: string;
   alt: string;
 }
@@ -249,7 +256,7 @@ export const JOBSITE_PHOTO: PhotoSlot = {
 /* Homepage hero imagery — a full-bleed background (branded service truck,
    shown darkened behind the hero) and the foreground photo card. */
 export const HERO_BG: PhotoSlot = {
-  src: '/assets/hero-truck.jpg',
+  src: heroTruckImg,
   placeholder: 'Photo · Hole in One service truck',
   alt: 'Hole in One Plumbing service truck with Texas-flag branding on the utility bed',
 };
@@ -260,7 +267,7 @@ export const OG_IMAGE = '/og-image.jpg';
 /* Real client photo: technician running a cleanout test at an outdoor
    sewer cleanout. */
 export const HERO_CARD: PhotoSlot = {
-  src: '/assets/cleanout-test.jpg',
+  src: cleanoutTestImg,
   placeholder: 'Photo · sewer cleanout test',
   alt: 'Hole in One Plumbing technician running test lines into an outdoor sewer cleanout',
 };

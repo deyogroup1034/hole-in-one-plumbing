@@ -56,19 +56,25 @@ export function Testimonials() {
         </div>
       </div>
 
-      <div className="mt-7 flex justify-center gap-2">
+      {/* Pager dots: the button is a 24px+ touch target (a11y target-size);
+          the visible dot is the inner span. */}
+      <div className="mt-4 flex justify-center">
         {TESTIMONIALS.map((_, k) => (
           <button
             key={k}
             type="button"
             onClick={() => setI(k)}
             aria-label={`Review ${k + 1}`}
-            className="h-2 rounded-full transition-all"
-            style={{
-              width: k === i ? 26 : 8,
-              background: k === i ? 'var(--color-accent-500)' : 'rgba(255,255,255,.3)',
-            }}
-          />
+            className="grid h-6 min-w-6 place-items-center px-1 transition-all"
+          >
+            <span
+              className="h-2 rounded-full transition-all"
+              style={{
+                width: k === i ? 26 : 8,
+                background: k === i ? 'var(--color-accent-500)' : 'rgba(255,255,255,.3)',
+              }}
+            />
+          </button>
         ))}
       </div>
 

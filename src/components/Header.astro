@@ -1,7 +1,9 @@
 ---
 import Icon from './Icon.astro';
+import Image from './Image.astro';
 import { MobileNav } from './MobileNav';
 import { BIZ, NAV_LINKS, telHref } from '@/data/site';
+import logoImg from '@/assets/logo.png';
 ---
 
 <header class="sticky top-0 z-50" data-site-header>
@@ -36,7 +38,7 @@ import { BIZ, NAV_LINKS, telHref } from '@/data/site';
   >
     <div class="wrap flex h-[78px] items-center gap-6">
       <a href="/" class="flex flex-shrink-0 items-center" aria-label={BIZ.name}>
-        <img src="/assets/logo.png" alt={BIZ.name} width={77} height={56} class="h-14 w-auto" />
+        <Image src={logoImg} alt={BIZ.name} width={154} height={112} loading="eager" class="h-14 w-auto" />
       </a>
 
       <!-- Desktop nav — fills the space between logo and CTAs and centers itself -->
@@ -101,11 +103,16 @@ import { BIZ, NAV_LINKS, telHref } from '@/data/site';
 </style>
 
 <script>
-  // Add a shadow + border to the navbar once the page is scrolled.
+  // Add a shadow + border to the navbar once the page is scrolled. Only touch
+  // styles when the state flips — writing them on every scroll event forces
+  // style/layout recalcs each frame (Lighthouse forced-reflow finding).
   const navbar = document.querySelector<HTMLElement>('[data-navbar]');
+  let wasScrolled: boolean | null = null;
   const onScroll = () => {
     if (!navbar) return;
     const scrolled = window.scrollY > 8;
+    if (scrolled === wasScrolled) return;
+    wasScrolled = scrolled;
     navbar.style.boxShadow = scrolled ? '0 6px 24px rgba(15,23,34,.08)' : 'none';
     navbar.style.borderBottomColor = scrolled ? 'var(--color-line)' : 'transparent';
   };

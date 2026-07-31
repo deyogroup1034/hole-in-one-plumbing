@@ -25,6 +25,10 @@ interface Props {
   /** Eager-load above-the-fold images (e.g. the hero). Default lazy. */
   loading?: 'lazy' | 'eager';
   sizes?: string;
+  /** Responsive srcset widths (optimized mode only). */
+  widths?: number[];
+  /** Set "high" on the LCP image so the browser fetches it first. */
+  fetchpriority?: 'high' | 'low' | 'auto';
 }
 
 const {
@@ -36,6 +40,8 @@ const {
   class: className,
   loading = 'lazy',
   sizes,
+  widths,
+  fetchpriority,
 } = Astro.props;
 ---
 
@@ -49,6 +55,8 @@ const {
       loading={loading}
       decoding="async"
       sizes={sizes}
+      widths={widths}
+      fetchpriority={fetchpriority}
       class={className}
     />
   ) : src ? (
