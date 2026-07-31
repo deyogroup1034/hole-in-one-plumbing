@@ -7,9 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // Used for canonical + OG URLs and the sitemap.
-  // LAUNCH: flip to https://holeinoneplumbing.com at domain cutover.
-  site: 'https://hole-in-one-plumbing.vercel.app',
+  // Used for canonical + OG URLs and the sitemap. Live domain since the
+  // 2026-07-31 DNS cutover; hole-in-one-plumbing.vercel.app is the deploy alias.
+  site: 'https://holeinoneplumbing.com',
 
   // Static by default. Individual routes opt into on-demand (serverless)
   // rendering with `export const prerender = false` — e.g. the contact form
