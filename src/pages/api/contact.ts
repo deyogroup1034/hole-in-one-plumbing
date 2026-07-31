@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { isTestSubmission, postLeadToDeyoDash } from '@/lib/deyo';
+import { sendEmail } from '@/lib/email';
 import { verifyTurnstile } from '@/lib/turnstile-verify';
+import { BIZ } from '@/data/site';
 
 // On-demand: this route runs as a Vercel serverless function rather than
 // being prerendered. Everything else on the site stays static.
@@ -74,19 +76,75 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  // PRE-LAUNCH: wire up real lead delivery here — email via Resend
-  // (confirmed choice). Secrets come from Vercel env vars via `process.env`.
-  // For now the lead is logged and reported to Deyo Dash (below), so nothing
-  // is silently dropped while email is pending.
+  // Always in the function logs, whatever the delivery channels do.
   console.log('New service request:', lead);
 
-  // Report the lead to Deyo Dash monitoring/reporting. Best-effort — a
-  // webhook hiccup must never break the visitor's submission.
-  await postLeadToDeyoDash({
+  // Lead delivery, two channels: email to the business (Resend — activates
+  // once RESEND_API_KEY is set; sender upgrades via RESEND_FROM_EMAIL when
+  // the domain is verified) and the Deyo Dash webhook for monitoring and
+  // reporting. Either alone counts as delivered.
+  const footer =
+    'This notification was sent automatically by the website service-request form. ' +
+    "To respond, reply to this email (replies go to the customer's address when " +
+    'they provided one) or call the customer directly.';
+  const text = [
+    `Service: ${lead.service}`,
+    `Name: ${lead.name}`,
+    `Phone: ${lead.phone}`,
+    `Email: ${lead.email || '(not provided)'}`,
+    '',
+    lead.message || '(no message)',
+    '',
+    '—',
+    footer,
+  ].join('\n');
+  const html = `
+    <p><strong>Service:</strong> ${escapeHtml(lead.service)}</p>
+    <p><strong>Name:</strong> ${escapeHtml(lead.name)}</p>
+    <p><strong>Phone:</strong> ${escapeHtml(lead.phone)}</p>
+    <p><strong>Email:</strong> ${escapeHtml(lead.email || '(not provided)')}</p>
+    <hr />
+    <p>${escapeHtml(lead.message || '(no message)').replace(/\n/g, '<br />')}</p>
+    <hr />
+    <p style="color:#666;font-size:12px">${footer}</p>
+  `;
+
+  const emailResult = await sendEmail({
+    to: process.env.CONTACT_TO_EMAIL ?? BIZ.email,
+    replyTo: lead.email || undefined,
+    subject: `[Website] ${lead.service} — ${lead.name}`,
+    text,
+    html,
+  });
+  const emailConfigured = emailResult.error?.name !== 'missing_api_key';
+  const emailOk = emailConfigured && !emailResult.error;
+  if (emailConfigured && emailResult.error) {
+    console.error('Resend error:', emailResult.error);
+  }
+
+  const webhookOk = await postLeadToDeyoDash({
     name: lead.name,
     email: lead.email,
     detail: { phone: lead.phone, service: lead.service, message: lead.message },
   });
 
+  // Pre-launch (email unconfigured) the log + webhook are the record, so the
+  // visitor still gets a success. Once email is live, only fail the visitor
+  // when NO channel delivered — never lose a lead silently.
+  if (emailConfigured && !emailOk && !webhookOk) {
+    return json(
+      { ok: false, error: `We couldn't send your request right now. Please call ${BIZ.phones[0]} and we'll help right away.` },
+      500,
+    );
+  }
+
   return json({ ok: true });
 };
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
