@@ -5,7 +5,6 @@ import Footer from '@/components/Footer.astro';
 import PageHero from '@/components/PageHero.astro';
 import CtaBand from '@/components/CtaBand.astro';
 import Icon from '@/components/Icon.astro';
-import { FeaturedStories } from '@/components/FeaturedStories';
 import { BIZ, GOOGLE_REVIEW_URL, TESTIMONIALS, TRUST_BADGES } from '@/data/site';
 
 const title = 'Customer Stories & Reviews | Hole in One Plumbing';
@@ -48,24 +47,8 @@ const STARS = 5;
       </div>
     </section>
 
-    <!-- Featured Stories — interactive: one main story + the rest selectable -->
-    <section class="py-20 lg:py-24">
-      <div class="wrap">
-        <div class="reveal mb-10 max-w-2xl">
-          <span class="eyebrow">Featured Stories</span>
-          <h2 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">Recent jobs, start to finish</h2>
-          <p class="mt-4 text-[17px] leading-relaxed text-slate-soft">
-            A look at the work we’re proud of. Pick a job to read the story.
-          </p>
-        </div>
-
-        <!-- PLACEHOLDER featured stories — see FEATURED_STORIES in site.ts.
-             PRE-LAUNCH: replace with real, verifiable jobs + consent. -->
-        <div class="reveal">
-          <FeaturedStories client:visible />
-        </div>
-      </div>
-    </section>
+    <!-- The "Recent jobs, start to finish" Featured Stories section is parked
+         at /drafts/recent-jobs (noindexed) until real jobs + consent land. -->
 
     <!-- Reviews grid -->
     <section class="bg-paper py-20 lg:py-24">

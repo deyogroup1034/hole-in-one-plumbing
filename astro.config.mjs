@@ -24,7 +24,8 @@ export default defineConfig({
 
   // sitemap emits /sitemap-index.xml from `site` on every build; a
   // vercel.json redirect aliases the conventional /sitemap.xml to it.
-  integrations: [react(), sitemap()],
+  // /drafts/* pages are internal (noindexed) and stay out of the sitemap.
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/drafts/') })],
 
   vite: {
     plugins: [tailwindcss()],

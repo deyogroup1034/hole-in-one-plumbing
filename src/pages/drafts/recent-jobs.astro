@@ -1,0 +1,37 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { FeaturedStories } from '@/components/FeaturedStories';
+
+/* Draft parking spot for the "Recent jobs, start to finish" section, pulled
+   from /customer-stories until the stories are real (verifiable jobs +
+   customer consent). Noindexed and excluded from the sitemap — nothing links
+   here; it exists so the section can be reviewed and iterated on in place.
+   When it's ready, move the section back into customer-stories.astro. */
+---
+
+<Layout title="Draft: Featured Stories | Hole in One Plumbing" noindex>
+  <Header />
+  <main>
+    <section class="py-20 lg:py-24">
+      <div class="wrap">
+        <div class="mb-6 rounded-[14px] border border-gold-500/40 bg-gold-500/10 px-5 py-3.5 font-display text-[14px] font-semibold text-slate-strong">
+          Internal draft — not linked from the site and hidden from search engines. Stories below
+          are placeholders pending real jobs and customer consent.
+        </div>
+
+        <div class="mb-10 max-w-2xl">
+          <span class="eyebrow">Featured Stories</span>
+          <h1 class="mt-4 text-[clamp(28px,3.4vw,42px)] font-extrabold">Recent jobs, start to finish</h1>
+          <p class="mt-4 text-[17px] leading-relaxed text-slate-soft">
+            A look at the work we’re proud of. Pick a job to read the story.
+          </p>
+        </div>
+
+        <FeaturedStories client:visible />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
