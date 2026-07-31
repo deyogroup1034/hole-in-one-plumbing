@@ -20,7 +20,9 @@ export default defineConfig({
   // /about/ to /about, so nav hrefs like `/about` serve with no slash.
   trailingSlash: 'never',
 
-  adapter: vercel(),
+  // webAnalytics injects the Vercel Web Analytics script into every page —
+  // traffic reporting in Deyo Dash reads it via the Vercel query API.
+  adapter: vercel({ webAnalytics: { enabled: true } }),
 
   // sitemap emits /sitemap-index.xml from `site` on every build; a
   // vercel.json redirect aliases the conventional /sitemap.xml to it.
