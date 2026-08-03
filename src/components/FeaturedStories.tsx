@@ -7,7 +7,11 @@ import type { PhotoSlot } from '@/data/site';
    otherwise the styled `.ph` placeholder box (global.css). */
 function Photo({ photo, className }: { photo: PhotoSlot; className?: string }) {
   if (photo.src) {
-    return <img src={photo.src} alt={photo.alt} className={className} />;
+    // ImageMetadata (src/assets import) carries its URL on .src; note the URL
+    // is the unoptimized original here — islands don't run the astro:assets
+    // pipeline. Fine for the draft hub's stock placeholders.
+    const url = typeof photo.src === 'object' ? photo.src.src : photo.src;
+    return <img src={url} alt={photo.alt} className={className} />;
   }
   return (
     <div className={`ph ${className ?? ''}`} role="img" aria-label={photo.alt}>
@@ -35,12 +39,20 @@ export function FeaturedStories() {
             {story.title} — {story.location}
           </h3>
           <p className="mt-3 text-[16.5px] leading-relaxed text-slate-strong">{story.body}</p>
-          <a
-            href={story.serviceHref}
-            className="mt-5 inline-flex items-center gap-1.5 font-display text-[14.5px] font-bold text-accent-600"
-          >
-            See the service behind this job <Icon name="arrow" size={16} />
-          </a>
+          <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+            <a
+              href={story.storyHref}
+              className="inline-flex items-center gap-1.5 font-display text-[14.5px] font-bold text-accent-600"
+            >
+              Read the full story <Icon name="arrow" size={16} />
+            </a>
+            <a
+              href={story.serviceHref}
+              className="inline-flex items-center gap-1.5 font-display text-[14.5px] font-bold text-slate-soft"
+            >
+              See the service behind this job <Icon name="arrow" size={16} />
+            </a>
+          </div>
         </div>
       </article>
 
