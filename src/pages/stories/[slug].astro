@@ -1,0 +1,166 @@
+---
+/* Featured job story pages (/stories/{slug}) — content from src/data/stories.ts,
+   spec: hio-job-stories.md. Static, one page per story.
+
+   FLIP TO INDEX when real photo + customer consent confirmed — then link
+   hub from Customer Stories page, regenerate sitemap, resubmit in GSC.
+   (The flag lives per-story in stories.ts as `indexable`.) */
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import CtaBand from '@/components/CtaBand.astro';
+import Icon from '@/components/Icon.astro';
+import Image from '@/components/Image.astro';
+import StoryDisclosure from '@/components/StoryDisclosure.astro';
+import { STORIES, getStory } from '@/data/stories';
+import { BIZ } from '@/data/site';
+
+export function getStaticPaths() {
+  return STORIES.map((story) => ({ params: { slug: story.slug }, props: { story } }));
+}
+
+const { story } = Astro.props;
+const sibling = getStory(story.siblingSlug)!;
+
+const stripTags = (html: string) => html.replace(/<[^>]+>/g, '');
+const pageUrl = new URL(`/stories/${story.slug}`, Astro.site).href;
+
+// Article + FAQPage + BreadcrumbList (the global LocalBusiness schema comes
+// from Layout). Breadcrumb "Stories" points at the draft hub until launch.
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: story.h1,
+    description: story.metaDescription,
+    author: { '@type': 'Organization', name: BIZ.name },
+    publisher: { '@type': 'Organization', name: BIZ.name },
+    datePublished: story.datePublished,
+    mainEntityOfPage: pageUrl,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: story.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: stripTags(f.a) },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'Stories', item: new URL('/drafts/recent-jobs', Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: story.h1, item: pageUrl },
+    ],
+  },
+];
+---
+
+<Layout
+  title={story.titleTag}
+  description={story.metaDescription}
+  jsonLd={jsonLd}
+  noindex={!story.indexable}
+>
+  <Header />
+  <main>
+    {/* Story hero: PageHero variant with the disclosure directly under the H1 */}
+    <section class="relative overflow-hidden bg-gradient-to-b from-navy-800 to-navy-900 text-white">
+      <div
+        class="pointer-events-none absolute -right-[10%] -top-[40%] h-[560px] w-[560px] rounded-full"
+        style="background: radial-gradient(circle, rgba(4,129,57,.26), transparent 62%);"
+      >
+      </div>
+      <div class="wrap relative max-w-4xl py-14 lg:py-[72px]">
+        <span class="eyebrow" style="color:#9fd3ff;">{story.service} · {story.city}</span>
+        <h1 class="mt-4 text-[clamp(30px,4vw,48px)] font-black tracking-[-0.03em] text-white">
+          {story.h1}
+        </h1>
+        <StoryDisclosure />
+      </div>
+    </section>
+
+    <article class="py-14 lg:py-20">
+      <div class="wrap max-w-3xl">
+        {/* Hero photo slot. Real photo lands as src/assets/stories/{story.heroImage.file}
+             (import it into stories.ts and pass as src); styled placeholder until then. */}
+        <div class="reveal mb-10">
+          <Image
+            placeholder={story.heroImage.placeholder}
+            alt={story.heroImage.alt}
+            class="h-[280px] w-full rounded-[20px] object-cover shadow-card sm:h-[360px]"
+          />
+        </div>
+
+        <div class="space-y-5 text-[17px] leading-[1.7] text-slate-strong">
+          {story.intro.map((p) => <p set:html={p} />)}
+        </div>
+
+        {
+          story.sections.map((section) => (
+            <section class="mt-10">
+              <h2 class="mb-4 text-[clamp(22px,2.6vw,30px)] font-extrabold text-ink">{section.heading}</h2>
+              <div class="space-y-5 text-[17px] leading-[1.7] text-slate-strong">
+                {section.paragraphs.map((p) => <p set:html={p} />)}
+              </div>
+            </section>
+          ))
+        }
+
+        {/* FAQ */}
+        <section class="mt-14">
+          <h2 class="mb-6 text-[clamp(22px,2.6vw,30px)] font-extrabold text-ink">
+            Questions {story.city.replace(', TX', '')} homeowners ask
+          </h2>
+          <div class="space-y-4">
+            {
+              story.faqs.map((f) => (
+                <div class="rounded-[16px] border border-line bg-white p-6 shadow-sm">
+                  <h3 class="font-display text-[17px] font-bold text-ink">{f.q}</h3>
+                  <p class="mt-2 text-[15.5px] leading-relaxed text-slate-strong" set:html={f.a} />
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        {/* Internal links: matching services, sibling story, contact */}
+        <section class="mt-14 rounded-[18px] border border-line bg-paper p-7">
+          <h2 class="font-display text-[15px] font-bold uppercase tracking-[0.08em] text-slate-soft">
+            Keep reading
+          </h2>
+          <ul class="mt-4 space-y-3">
+            {
+              story.serviceLinks.map((l) => (
+                <li>
+                  <a href={l.href} class="inline-flex items-center gap-1.5 font-display text-[15.5px] font-bold text-accent-600 hover:text-accent-700">
+                    {l.label} — the service behind this job <Icon name="arrow" size={15} />
+                  </a>
+                </li>
+              ))
+            }
+            <li>
+              <a
+                href={`/stories/${sibling.slug}`}
+                class="inline-flex items-center gap-1.5 font-display text-[15.5px] font-bold text-accent-600 hover:text-accent-700"
+              >
+                Next story: {sibling.h1} <Icon name="arrow" size={15} />
+              </a>
+            </li>
+            <li>
+              <a href="/contact" class="inline-flex items-center gap-1.5 font-display text-[15.5px] font-bold text-accent-600 hover:text-accent-700">
+                Request service <Icon name="arrow" size={15} />
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <CtaBand heading={story.cta.heading} subhead={story.cta.subhead} />
+  </main>
+  <Footer />
+</Layout>

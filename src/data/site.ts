@@ -298,6 +298,8 @@ export interface FeaturedStory {
   service: string;
   body: string;
   serviceHref: string;
+  /** The story's full /stories/{slug} page. */
+  storyHref: string;
   photo: PhotoSlot;
 }
 
@@ -308,6 +310,7 @@ export const FEATURED_STORIES: FeaturedStory[] = [
     service: 'Hydrostatic Pre-Test',
     body: "A foundation crew couldn't start until the under-slab plumbing was cleared. We ran a hydrostatic test, isolated the failed line, and repaired it — documented start to finish, so the foundation work stayed on schedule.",
     serviceHref: '/services#hydro-pre',
+    storyHref: '/stories/slab-leak-hydrostatic-test-wylie-tx',
     photo: JOBSITE_PHOTO,
   },
   {
@@ -316,6 +319,7 @@ export const FEATURED_STORIES: FeaturedStory[] = [
     service: 'Hydrostatic Post-Test',
     body: 'After the slab was lifted, we post-tested each under-slab line and handed over written results — proof the plumbing came through the foundation repair sound.',
     serviceHref: '/services#hydro-post',
+    storyHref: '/stories/hydrostatic-test-after-foundation-repair-plano-tx',
     photo: {
       src: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=1100&q=80',
       placeholder: 'Photo · post-test, Plano',
@@ -328,6 +332,7 @@ export const FEATURED_STORIES: FeaturedStory[] = [
     service: 'Under-Slab Repair',
     body: 'Aging cast-iron lines were failing beneath an older home. We tunneled under the slab and converted them to PVC, leaving the finished floors untouched.',
     serviceHref: '/services#foundation-repair',
+    storyHref: '/stories/cast-iron-pipe-replacement-tunneling-sachse-tx',
     photo: {
       src: 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1100&q=80',
       placeholder: 'Photo · under-slab repair, Sachse',
@@ -340,6 +345,7 @@ export const FEATURED_STORIES: FeaturedStory[] = [
     service: 'Pipe & Sewer Isolation',
     body: 'Another company called for a major repair. We isolated the system, pinpointed the real failure in under an hour, and fixed only what actually needed fixing.',
     serviceHref: '/services#isolation',
+    storyHref: '/stories/sewer-test-second-opinion-isolation-rockwall-tx',
     photo: {
       src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1100&q=80',
       placeholder: 'Photo · isolation test, Rockwall',
@@ -352,6 +358,7 @@ export const FEATURED_STORIES: FeaturedStory[] = [
     service: 'Water Heaters',
     body: 'We swapped an aging tank for a tankless unit sized for the home — installed to code with up-front pricing on both the unit and the labor.',
     serviceHref: '/services#water-heater',
+    storyHref: '/stories/tankless-water-heater-installation-murphy-tx',
     photo: {
       src: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1100&q=80',
       placeholder: 'Photo · tankless install, Murphy',
