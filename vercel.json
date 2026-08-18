@@ -4,7 +4,12 @@
     { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
     {
       "source": "/stories",
-      "destination": "/drafts/recent-jobs",
+      "destination": "/customer-stories",
+      "permanent": true
+    },
+    {
+      "source": "/drafts/recent-jobs",
+      "destination": "/customer-stories",
       "permanent": false
     }
   ],

@@ -38,10 +38,6 @@ export interface JobStory {
   serviceLinks: { label: string; href: string }[];
   siblingSlug: string;
   datePublished: string;
-  /** FLIP TO INDEX when real photo + customer consent confirmed — then link
-      hub from Customer Stories page, regenerate sitemap, resubmit in GSC.
-      (Also remove /stories from the sitemap exclusion in astro.config.mjs
-      for flipped pages.) */
   indexable: boolean;
 }
 
@@ -108,10 +104,10 @@ export const STORIES: JobStory[] = [
     },
     serviceLinks: [{ label: 'Hydrostatic Pre-Testing', href: '/services#hydro-pre' }],
     siblingSlug: 'sewer-test-second-opinion-isolation-rockwall-tx',
-    datePublished: '2026-08-03',
+    datePublished: '2026-08-18',
     // FLIP TO INDEX when real photo + customer consent confirmed — then link
     // hub from Customer Stories page, regenerate sitemap, resubmit in GSC.
-    indexable: false,
+    indexable: true,
   },
 
   // ---------- STORY 2 — Hydrostatic Post-Test — Plano, TX ----------
@@ -173,10 +169,10 @@ export const STORIES: JobStory[] = [
     },
     serviceLinks: [{ label: 'Hydrostatic Post-Testing', href: '/services#hydro-post' }],
     siblingSlug: 'slab-leak-hydrostatic-test-wylie-tx',
-    datePublished: '2026-08-03',
+    datePublished: '2026-08-18',
     // FLIP TO INDEX when real photo + customer consent confirmed — then link
     // hub from Customer Stories page, regenerate sitemap, resubmit in GSC.
-    indexable: false,
+    indexable: true,
   },
 
   // ---------- STORY 3 — Under-Slab Repair — Sachse, TX ----------
@@ -241,10 +237,10 @@ export const STORIES: JobStory[] = [
       { label: 'Drain & Sewer', href: '/services#drain' },
     ],
     siblingSlug: 'tankless-water-heater-installation-murphy-tx',
-    datePublished: '2026-08-03',
+    datePublished: '2026-08-18',
     // FLIP TO INDEX when real photo + customer consent confirmed — then link
     // hub from Customer Stories page, regenerate sitemap, resubmit in GSC.
-    indexable: false,
+    indexable: true,
   },
 
   // ---------- STORY 4 — Pipe & Sewer Isolation — Rockwall, TX ----------
@@ -309,10 +305,10 @@ export const STORIES: JobStory[] = [
       { label: 'Hydrostatic Pre-Testing', href: '/services#hydro-pre' },
     ],
     siblingSlug: 'slab-leak-hydrostatic-test-wylie-tx',
-    datePublished: '2026-08-03',
+    datePublished: '2026-08-18',
     // FLIP TO INDEX when real photo + customer consent confirmed — then link
     // hub from Customer Stories page, regenerate sitemap, resubmit in GSC.
-    indexable: false,
+    indexable: true,
   },
 
   // ---------- STORY 5 — Water Heaters — Murphy, TX ----------
@@ -383,10 +379,10 @@ export const STORIES: JobStory[] = [
       { label: 'Gas Lines', href: '/services#gas-lines' },
     ],
     siblingSlug: 'cast-iron-pipe-replacement-tunneling-sachse-tx',
-    datePublished: '2026-08-03',
+    datePublished: '2026-08-18',
     // FLIP TO INDEX when real photo + customer consent confirmed — then link
     // hub from Customer Stories page, regenerate sitemap, resubmit in GSC.
-    indexable: false,
+    indexable: true,
   },
 ];
 

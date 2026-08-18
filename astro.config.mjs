@@ -27,12 +27,9 @@ export default defineConfig({
   // sitemap emits /sitemap-index.xml from `site` on every build; a
   // vercel.json redirect aliases the conventional /sitemap.xml to it.
   // /drafts/* pages are internal (noindexed) and stay out of the sitemap.
-  // /stories/* pages are noindexed pending photos + consent — when a story
-  // flips to indexable (stories.ts), carve it out of this exclusion so it
-  // enters the sitemap.
   integrations: [
     react(),
-    sitemap({ filter: (page) => !page.includes('/drafts/') && !page.includes('/stories/') }),
+    sitemap({ filter: (page) => !page.includes('/drafts/') }),
   ],
 
   vite: {
