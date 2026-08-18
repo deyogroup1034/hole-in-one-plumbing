@@ -1,10 +1,7 @@
 ---
 /* Featured job story pages (/stories/{slug}) — content from src/data/stories.ts,
-   spec: hio-job-stories.md. Static, one page per story.
-
-   FLIP TO INDEX when real photo + customer consent confirmed — then link
-   hub from Customer Stories page, regenerate sitemap, resubmit in GSC.
-   (The flag lives per-story in stories.ts as `indexable`.) */
+   spec: hio-job-stories.md. Static, one page per story. Indexable per-story
+   via the `indexable` flag in stories.ts (all live since 2026-08-18). */
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -26,7 +23,7 @@ const stripTags = (html: string) => html.replace(/<[^>]+>/g, '');
 const pageUrl = new URL(`/stories/${story.slug}`, Astro.site).href;
 
 // Article + FAQPage + BreadcrumbList (the global LocalBusiness schema comes
-// from Layout). Breadcrumb "Stories" points at the draft hub until launch.
+// from Layout).
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -52,7 +49,7 @@ const jsonLd = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
-      { '@type': 'ListItem', position: 2, name: 'Stories', item: new URL('/drafts/recent-jobs', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'Customer Stories', item: new URL('/customer-stories', Astro.site).href },
       { '@type': 'ListItem', position: 3, name: story.h1, item: pageUrl },
     ],
   },
