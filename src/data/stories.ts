@@ -7,7 +7,17 @@
    Honesty guardrails (from the spec): no invented dollar amounts stated
    as fact, no real customer names in the narrative, and no real photo of
    a customer's property without confirmed consent.
+
+   Hero photos are licensed Adobe Stock (real photos, no generative AI) —
+   alt text describes the photo itself, not the specific job/city.
    ============================================================ */
+
+import type { ImageMetadata } from 'astro';
+import wylieHero from '@/assets/stories/slab-leak-hydrostatic-test-wylie-tx-hero.jpg';
+import planoHero from '@/assets/stories/hydrostatic-test-after-foundation-repair-plano-tx-hero.jpg';
+import sachseHero from '@/assets/stories/cast-iron-pipe-replacement-tunneling-sachse-tx-hero.jpg';
+import rockwallHero from '@/assets/stories/sewer-test-second-opinion-isolation-rockwall-tx-hero.jpg';
+import murphyHero from '@/assets/stories/tankless-water-heater-installation-murphy-tx-hero.jpg';
 
 export interface StoryFaq {
   q: string;
@@ -28,8 +38,8 @@ export interface JobStory {
   titleTag: string;
   metaDescription: string;
   h1: string;
-  /** Real photo lands as src/assets/stories/{file}; placeholder box until then. */
-  heroImage: { file: string; placeholder: string; alt: string };
+  /** Licensed photo in src/assets/stories/{file}; `placeholder` kept as fallback. */
+  heroImage: { file: string; src: ImageMetadata; placeholder: string; alt: string };
   intro: string[];
   sections: StorySection[];
   faqs: StoryFaq[];
@@ -55,8 +65,9 @@ export const STORIES: JobStory[] = [
     h1: 'A Slab Leak Found — and Fixed — Without Tearing Up a Wylie Home',
     heroImage: {
       file: 'slab-leak-hydrostatic-test-wylie-tx-hero.jpg',
+      src: wylieHero,
       placeholder: 'Photo · hydrostatic test, Wylie',
-      alt: 'Hole in One Plumbing technician sealing a two-way sewer cleanout with a test ball before a hydrostatic test in Wylie, TX.',
+      alt: 'Capped two-way sewer cleanout uncovered in a trench beside a brick home foundation, the access point for a hydrostatic test.',
     },
     intro: [
       `The call came from a foundation company, not the homeowner. That's common in our line of work. They had a repair scheduled on a one-story home in Wylie — piers ready, crew booked — but their contract required one thing first: proof the under-slab plumbing was sound. If a drain line is leaking under a slab, lifting the foundation can turn a small problem into a disaster. So the foundation work stopped until someone could answer a simple question: is anything leaking under this house?`,
@@ -121,8 +132,9 @@ export const STORIES: JobStory[] = [
     h1: 'After the Lift: Re-Testing Every Line in a Plano Home',
     heroImage: {
       file: 'hydrostatic-test-after-foundation-repair-plano-tx-hero.jpg',
+      src: planoHero,
       placeholder: 'Photo · post-test, Plano',
-      alt: 'Water-level gauge during a hydrostatic plumbing test after foundation repair at a Plano, TX home.',
+      alt: 'Brass test gauge threaded onto an outdoor faucet against home siding, used to verify a plumbing system holds after repairs.',
     },
     intro: [
       `The foundation company had done its job: a dozen piers, the slab lifted back toward level, doors closing like they hadn't in years. For most homeowners, that feels like the finish line. For the plumbing under the house, it's the moment of maximum stress — and that's exactly why we were there.`,
@@ -186,8 +198,9 @@ export const STORIES: JobStory[] = [
     h1: 'Cast Iron to PVC in Sachse — By Tunnel, Not Jackhammer',
     heroImage: {
       file: 'cast-iron-pipe-replacement-tunneling-sachse-tx-hero.jpg',
+      src: sachseHero,
       placeholder: 'Photo · under-slab tunneling, Sachse',
-      alt: 'Tunnel access under a Sachse, TX home slab where corroded cast iron drain pipe is being replaced with PVC.',
+      alt: 'Heavily corroded cast iron drain pipe joined to a new plastic replacement section in the excavated base of an older home.',
     },
     intro: [
       `Some houses tell you their age through the plumbing. This one — a well-kept ranch in an established Sachse neighborhood — was doing it through the drains: another backup every few months, another cleaning, another few months of quiet before it started again. The camera told the rest of the story. The original cast iron drain lines had spent roughly sixty years under that slab, and the bottom of the pipe — the channel where water actually runs — was rotted through in stretches. Cleaning wasn't fixing anything anymore. There was less and less pipe left to clean.`,
@@ -254,8 +267,9 @@ export const STORIES: JobStory[] = [
     h1: 'The Second Opinion That Saved a Rockwall Homeowner Thousands',
     heroImage: {
       file: 'sewer-test-second-opinion-isolation-rockwall-tx-hero.jpg',
+      src: rockwallHero,
       placeholder: 'Photo · isolation test, Rockwall',
-      alt: 'Inflatable isolation test plugs used to pinpoint a failed under-slab sewer line section at a Rockwall, TX home.',
+      alt: 'Technician feeds a sewer inspection camera into an open cleanout while the monitor shows the inside of the drain line.',
     },
     intro: [
       `The homeowner's voice on the phone had the sound of someone bracing for bad news to get worse. Another company had run a test under her Rockwall home, told her it failed, and handed her a bid to replace the under-slab plumbing. All of it. The number had a lot of digits. She wanted to know one thing before signing anything: <em>does a failed test really mean the whole system is bad?</em>`,
@@ -322,8 +336,9 @@ export const STORIES: JobStory[] = [
     h1: 'A Tankless Water Heater, Sized and Installed Right in Murphy',
     heroImage: {
       file: 'tankless-water-heater-installation-murphy-tx-hero.jpg',
+      src: murphyHero,
       placeholder: 'Photo · tankless install, Murphy',
-      alt: 'New wall-mounted tankless water heater with clean copper and gas piping installed by Hole in One Plumbing in Murphy, TX.',
+      alt: 'Wall-mounted tankless water heater installed in a garage, with water and gas connections plumbed neatly below the unit.',
     },
     intro: [
       `Six people, two showers, one forty-gallon tank. The math had stopped working years ago; the family in Murphy had just gotten used to scheduling their mornings around it. When the old tank finally started leaving rusty water in the pan, they called with a question we hear weekly: <em>should we just do tankless?</em>`,

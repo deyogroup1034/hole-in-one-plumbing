@@ -30,6 +30,7 @@ const jsonLd = [
     '@type': 'Article',
     headline: story.h1,
     description: story.metaDescription,
+    image: new URL(story.heroImage.src.src, Astro.site).href,
     author: { '@type': 'Organization', name: BIZ.name },
     publisher: { '@type': 'Organization', name: BIZ.name },
     datePublished: story.datePublished,
@@ -82,12 +83,14 @@ const jsonLd = [
 
     <article class="py-14 lg:py-20">
       <div class="wrap max-w-3xl">
-        {/* Hero photo slot. Real photo lands as src/assets/stories/{story.heroImage.file}
-             (import it into stories.ts and pass as src); styled placeholder until then. */}
         <div class="reveal mb-10">
           <Image
-            placeholder={story.heroImage.placeholder}
+            src={story.heroImage.src}
             alt={story.heroImage.alt}
+            widths={[480, 768, 1200, 1536]}
+            sizes="(max-width: 800px) 100vw, 768px"
+            loading="eager"
+            fetchpriority="high"
             class="h-[280px] w-full rounded-[20px] object-cover shadow-card sm:h-[360px]"
           />
         </div>
