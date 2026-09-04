@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Icon } from './icons';
+import type { TurnstileStatus } from './Turnstile';
 import { Turnstile, resetTurnstile, turnstileConfigured } from './Turnstile';
 import { BIZ, SERVICES } from '@/data/site';
 
@@ -15,6 +16,9 @@ type Errors = Partial<Record<keyof FormState, string>>;
 
 const EMPTY: FormState = { name: '', phone: '', email: '', service: '', message: '' };
 
+/** How long a held submit waits for the widget before falling back to "call us". */
+const QUEUE_TIMEOUT_MS = 20_000;
+
 /* Reusable "Request Service" block. Hydrated island. Posts to the
    /api/contact route (a Vercel serverless function, rendered on demand). */
 export function RequestServiceForm() {
@@ -22,6 +26,12 @@ export function RequestServiceForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileStatus, setTurnstileStatus] = useState<TurnstileStatus>('pending');
+  /* Set when the visitor submitted before the widget had a token. The send is
+     held until one arrives rather than posted with `null`, which the gate
+     rejects 403 — a silent lead loss, since the visitor sees only a generic
+     "try again" and has nothing left to tick. */
+  const [queued, setQueued] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
   const set =
@@ -38,19 +48,16 @@ export function RequestServiceForm() {
     return er;
   };
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const er = validate();
-    setErrors(er);
-    if (Object.keys(er).length > 0) return;
+  const callUs = `We couldn't verify your request right now. Please call ${BIZ.phones[0]} and we'll help right away.`;
 
+  const send = async (token: string | null) => {
     setStatus('sending');
     setServerError(null);
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, turnstileToken }),
+        body: JSON.stringify({ ...form, turnstileToken: token }),
       });
       if (!res.ok) {
         const data = (await res.json().catch(() => null)) as { error?: string } | null;
@@ -62,11 +69,60 @@ export function RequestServiceForm() {
       // A consumed/expired token can't be reused — reset for the retry.
       if (turnstileConfigured()) {
         setTurnstileToken(null);
+        setTurnstileStatus('pending');
         resetTurnstile();
       }
       setStatus('error');
     }
   };
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const er = validate();
+    setErrors(er);
+    if (Object.keys(er).length > 0) return;
+
+    if (turnstileConfigured() && !turnstileToken) {
+      // Nothing will ever pass the gate — don't burn the visitor's submit on a
+      // request we know is rejected; point them at the phone instead.
+      if (turnstileStatus === 'failed') {
+        setServerError(callUs);
+        setStatus('error');
+        return;
+      }
+      // Still solving (the widget loads with the form, so a fast filler can
+      // beat it). Hold the send until the token lands.
+      setServerError(null);
+      setStatus('sending');
+      setQueued(true);
+      return;
+    }
+
+    void send(turnstileToken);
+  };
+
+  // Release a queued send as soon as the widget produces a token, and give up
+  // with the call-us fallback if it never does.
+  useEffect(() => {
+    if (!queued) return;
+    if (turnstileToken) {
+      setQueued(false);
+      void send(turnstileToken);
+      return;
+    }
+    if (turnstileStatus === 'failed') {
+      setQueued(false);
+      setServerError(callUs);
+      setStatus('error');
+      return;
+    }
+    const giveUp = window.setTimeout(() => {
+      setQueued(false);
+      setServerError(callUs);
+      setStatus('error');
+    }, QUEUE_TIMEOUT_MS);
+    return () => window.clearTimeout(giveUp);
+  }, [queued, turnstileToken, turnstileStatus]);
 
   if (status === 'sent') {
     return (
@@ -160,7 +216,7 @@ export function RequestServiceForm() {
           />
         </Field>
 
-        <Turnstile onToken={setTurnstileToken} />
+        <Turnstile onToken={setTurnstileToken} onStatus={setTurnstileStatus} />
 
         {status === 'error' && (
           <p className="mb-3 text-[14px] font-semibold text-accent-700">
