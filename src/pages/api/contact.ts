@@ -32,6 +32,34 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ ok: false, error: 'Invalid request body.' }, 400);
   }
 
+  // The fleet's synthetic delivery probe authenticates with the shared ingest
+  // secret and never carries a widget token, so it bypasses the bot gate — but
+  // nothing else does.
+  const isTest = isTestSubmission(body.deyo_test);
+
+  // Bot gate FIRST for real traffic: before validation, before the notification
+  // email and the dash webhook. Fails closed.
+  if (!isTest) {
+    const human = await verifyTurnstile(body.turnstileToken ?? null, request.headers);
+    if (!human.ok) {
+      return human.kind === 'challenge'
+        ? json(
+            {
+              ok: false,
+              error: "We couldn't confirm the security check. Please complete it and try again.",
+            },
+            403,
+          )
+        : json(
+            {
+              ok: false,
+              error: `We couldn't verify your request right now. Please call ${BIZ.phones[0]} and we'll help right away.`,
+            },
+            503,
+          );
+    }
+  }
+
   const name = body.name?.trim() ?? '';
   const phoneDigits = (body.phone ?? '').replace(/\D/g, '');
   const service = body.service?.trim() ?? '';
@@ -55,7 +83,7 @@ export const POST: APIRoute = async ({ request }) => {
   // It runs the same validation, then routes to the sink: the webhook flagged
   // `test: true` (recorded as a form_delivery health result, never a lead).
   // Responding `deyo_test: "delivered"` confirms the whole chain worked.
-  if (isTestSubmission(body.deyo_test)) {
+  if (isTest) {
     const delivered = await postLeadToDeyoDash({
       name: lead.name,
       email: lead.email,
@@ -63,17 +91,6 @@ export const POST: APIRoute = async ({ request }) => {
       test: true,
     });
     return json({ ok: delivered, deyo_test: delivered ? 'delivered' : 'webhook-failed' }, delivered ? 200 : 502);
-  }
-
-  // Fleet-standard bot gate: verify the Turnstile token server-side before
-  // accepting the lead. Enforced only once TURNSTILE_SECRET_KEY is configured,
-  // so the form keeps working while the widget is being set up.
-  const human = await verifyTurnstile(body.turnstileToken ?? null);
-  if (!human) {
-    return json(
-      { ok: false, error: "We couldn't confirm the security check. Please complete it and try again." },
-      403,
-    );
   }
 
   // Always in the function logs, whatever the delivery channels do.
