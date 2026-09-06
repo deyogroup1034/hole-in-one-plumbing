@@ -92,6 +92,14 @@ export function RequestServiceForm() {
     setErrors(er);
     if (Object.keys(er).length > 0) return;
 
+    // Fleet test (contract v3): the marker makes the server accept the fleet
+    // secret in place of a Turnstile token, so the headless visitor must not
+    // queue behind the widget. Real visitors never carry the marker.
+    if (new URLSearchParams(window.location.search).get('deyo_test')) {
+      void send(turnstileToken);
+      return;
+    }
+
     if (turnstileConfigured() && !turnstileToken) {
       // Nothing will ever pass the gate — don't burn the visitor's submit on a
       // request we know is rejected; point them at the phone instead.
