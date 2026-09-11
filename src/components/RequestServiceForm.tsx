@@ -53,11 +53,21 @@ export function RequestServiceForm() {
   const send = async (token: string | null) => {
     setStatus('sending');
     setServerError(null);
+    // Fleet contract v3: Deyo Dash's synthetic browser test opens this page
+    // with ?deyo_test=<fleet secret>. Carrying it in the payload lets the
+    // server accept the secret in place of a Turnstile token and reroute
+    // delivery to the monitoring mailbox — a real visitor never has it, and
+    // the server (not this code) guarantees a test can never reach the shop.
+    const deyoTest = new URLSearchParams(window.location.search).get('deyo_test');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, turnstileToken: token }),
+        body: JSON.stringify({
+          ...form,
+          turnstileToken: token,
+          ...(deyoTest ? { deyo_test: deyoTest } : {}),
+        }),
       });
       if (!res.ok) {
         const data = (await res.json().catch(() => null)) as { error?: string } | null;
@@ -81,6 +91,14 @@ export function RequestServiceForm() {
     const er = validate();
     setErrors(er);
     if (Object.keys(er).length > 0) return;
+
+    // Fleet test (contract v3): the marker makes the server accept the fleet
+    // secret in place of a Turnstile token, so the headless visitor must not
+    // queue behind the widget. Real visitors never carry the marker.
+    if (new URLSearchParams(window.location.search).get('deyo_test')) {
+      void send(turnstileToken);
+      return;
+    }
 
     if (turnstileConfigured() && !turnstileToken) {
       // Nothing will ever pass the gate — don't burn the visitor's submit on a

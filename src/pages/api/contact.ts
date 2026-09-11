@@ -78,19 +78,45 @@ export const POST: APIRoute = async ({ request }) => {
     receivedAt: new Date().toISOString(),
   };
 
-  // Synthetic form-delivery test (Deyo Dash monitoring). The marker must
-  // match the fleet shared secret, so nothing external can reach this path.
-  // It runs the same validation, then routes to the sink: the webhook flagged
-  // `test: true` (recorded as a form_delivery health result, never a lead).
-  // Responding `deyo_test: "delivered"` confirms the whole chain worked.
+  // Synthetic form-delivery test (Deyo Dash monitoring, fleet contract v3).
+  // The marker must match the fleet shared secret, so nothing external can
+  // reach this path. It runs the same validation, then exercises the REAL
+  // email machinery — same Resend key, same sender module — with the
+  // destination hard-overridden to the Deyo probe mailbox: this branch
+  // returns before the business notification below is ever built, so the
+  // shop's inbox is never used on a test, by construction. The webhook is
+  // flagged `test: true` (recorded as a form_delivery health result, never a
+  // lead) and self-reports probe_sent plus the real delivery destination so
+  // the dashboard can audit both.
   if (isTest) {
+    const probeTo = process.env.DEYO_FORM_PROBE_EMAIL;
+    const siteId = process.env.DEYO_SITE_ID;
+    let probeSent = false;
+    if (probeTo && siteId) {
+      const probe = await sendEmail({
+        to: probeTo,
+        subject: `[deyo-probe site:${siteId}] form delivery probe`,
+        text: 'Synthetic delivery probe from the fleet form contract. No action needed.',
+        html: '<p>Synthetic delivery probe from the fleet form contract. No action needed.</p>',
+      });
+      probeSent = !probe.error;
+    }
+
     const delivered = await postLeadToDeyoDash({
       name: lead.name,
       email: lead.email,
-      detail: { service: lead.service, message: lead.message },
+      detail: {
+        service: lead.service,
+        message: lead.message,
+        probe_sent: probeSent,
+        delivery_to: process.env.CONTACT_TO_EMAIL ?? BIZ.email,
+      },
       test: true,
     });
-    return json({ ok: delivered, deyo_test: delivered ? 'delivered' : 'webhook-failed' }, delivered ? 200 : 502);
+    return json(
+      { ok: delivered, deyo_test: delivered ? 'delivered' : 'webhook-failed', probe_sent: probeSent },
+      delivered ? 200 : 502,
+    );
   }
 
   // Always in the function logs, whatever the delivery channels do.
